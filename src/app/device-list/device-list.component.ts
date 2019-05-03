@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DeviceBasic, DeviceGetterService} from '../services/device-getter.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-device-list',
@@ -18,10 +19,18 @@ export class DeviceListComponent implements OnInit {
   @Output()
   deviceSelected: EventEmitter<DeviceBasic> = new EventEmitter();
 
-  constructor(private deviceGetter: DeviceGetterService) { }
+  constructor(private deviceGetter: DeviceGetterService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.deviceGetter.getDevices().subscribe(devices => this.devices = devices);
+    this.selectedDevice = {id: this.route.snapshot.paramMap.get('id'), name: 'unknown', status: 'unknown'};
+    this.deviceGetter.getDevices().subscribe(devices => {
+      this.devices = devices;
+      // Update selected device
+      if (this.selectedDeviceVar) {
+        this.selectedDevice = this.devices.filter(d => d.id === this.selectedDeviceVar.id)[0];
+      }
+    });
   }
 
 }

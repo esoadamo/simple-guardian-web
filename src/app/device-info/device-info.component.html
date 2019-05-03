@@ -1,4 +1,6 @@
-<p *ngIf="selectedDeviceVar; else devicesInfo">device is selected</p>
+<div *ngIf="selectedDeviceVar; else devicesInfo">
+  <div class="device-name">{{ selectedDeviceVar.name | uppercase }}</div>
+</div>
 <ng-template #devicesInfo><p *ngIf="devicesInfo; else loadingInfo">
   Welcome to the control panel!<br>
   <--- Select (or create new) device on the right to manage them<br>
