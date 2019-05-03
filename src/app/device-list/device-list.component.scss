@@ -13,6 +13,15 @@ $fontSize:25px;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  background: #333333;
+}
+
+.device:hover {
+  filter: brightness(1.1);
+}
+
+.device.selected {
+  background: aqua;
 }
 
 .device-status {

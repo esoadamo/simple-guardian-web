@@ -8,6 +8,12 @@ import {DeviceBasic, DeviceGetterService} from '../services/device-getter.servic
 })
 export class DeviceListComponent implements OnInit {
   protected devices: DeviceBasic[];
+  protected selectedDeviceVar: DeviceBasic;
+
+  set selectedDevice(device: DeviceBasic) {
+    this.selectedDeviceVar = device;
+    this.deviceSelected.emit(device);
+  }
 
   @Output()
   deviceSelected: EventEmitter<DeviceBasic> = new EventEmitter();
