@@ -1,5 +1,5 @@
 <div (click)="selectedDevice = device" *ngFor="let device of devices"
-     [class.selected]="device.id===selectedDeviceVar.id"
+     [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
      class="device" routerLink="/control/{{device.id}}">
   <div class="device-status {{ device.status }}"></div>
   <div class="device-name">{{ device.name }}</div>

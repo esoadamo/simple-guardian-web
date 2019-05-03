@@ -1,0 +1,47 @@
+$button-size: 10ex;
+$button-margin: 2ex;
+
+.button {
+  width: $button-size;
+  height: $button-size;
+  padding: $button-margin;
+  border: 1px solid #02a28e;
+  vertical-align: middle;
+  cursor: pointer;
+  background: #474747;
+}
+
+.button:hover {
+  filter: brightness(1.1);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2em;
+}
+
+.warning {
+  border: 3px solid #73237d;
+  border-radius: 5px;
+  background: #2d2d2d;
+  width: calc(100% - 10ex);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .sign {
+    font-size: 2em;
+    padding-right: 1ex;
+  }
+}
+
+.option-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div {
+    margin-bottom: 2em;
+  }
+}

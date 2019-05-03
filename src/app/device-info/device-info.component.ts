@@ -14,6 +14,9 @@ export class DeviceInfoComponent implements OnInit {
 
   @Input()
   set selectedDevice(device: DeviceBasic) {
+    if (!device) {
+      return;
+    }
     this.selectedDeviceVar = null;
     this.deviceGetter.getDeviceInfo(device).subscribe(dev => this.selectedDeviceVar = dev);
   }
@@ -30,6 +33,7 @@ export class DeviceInfoComponent implements OnInit {
         needsLinking: data.filter(dev => dev.status === 'not-linked').length,
         total: data.length
       };
+      console.log(this.devicesInfo);
     });
   }
 

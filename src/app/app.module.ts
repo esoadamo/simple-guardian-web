@@ -7,13 +7,15 @@ import {DeviceListComponent} from './device-list/device-list.component';
 import {DeviceInfoComponent} from './device-info/device-info.component';
 import {AppRoutingModule} from './app-routing.module';
 import {RouterModule} from '@angular/router';
+import {InstallationModeSelectComponent} from './device-info/instalation-mode-select/installation-mode-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ControlPanelComponent,
     DeviceListComponent,
-    DeviceInfoComponent
+    DeviceInfoComponent,
+    InstallationModeSelectComponent
   ],
   imports: [
     BrowserModule,

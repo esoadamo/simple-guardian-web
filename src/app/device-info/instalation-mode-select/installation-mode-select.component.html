@@ -1,0 +1,42 @@
+<div class="buttons">
+  <div (click)="option = 'deb'" class="button">I want to install on Ubuntu / Debian</div>
+  <div (click)="option = 'auto'" class="button">I want to install on any other Linux</div>
+  <div (click)="option = 'login'" class="button">Already installed, just login</div>
+</div>
+<div *ngIf="!option" class="option-content">
+  Please, select one of the options
+</div>
+<div *ngIf="option && option === 'auto'" class="option-content">
+  <div class="warning">
+    <span class="sign">⚠</span>
+    <span>WARNING: You should always check any script that you download from the internet!</span>
+  </div>
+  <div>Enter following command into your terminal and the script will do everything for you:</div>
+  <code>
+    wget -qO- "{{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}/auto"| sudo python3 -
+  </code>
+</div>
+<div *ngIf="option && option === 'login'" class="option-content">
+  <div>You can link your device with this account by using simple-guardian-client:</div>
+  <code>
+    sudo simple-guardian-client login {{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}
+  </code>
+</div>
+<div *ngIf="option && option === 'deb'" class="option-content">
+  <div>By adding deb repository you can take advantage of using automatic updates.</div>
+  <div>Paste following command to your terminal to install simple-guardian on your device:</div>
+  <code>
+    # first make sure that you have root rights<br>
+    sudo ls<br>
+    # then import the repository key<br>
+    wget -O - https://deb.adamhlavacek.com/pub.gpg | sudo apt-key add -<br>
+    # then add the repository to your system<br>
+    echo "deb https://deb.adamhlavacek.com ./" | sudo tee -a /etc/apt/sources.list<br>
+    # update<br>
+    sudo apt update<br>
+    # install<br>
+    sudo apt install simple-guardian<br>
+    # login with the server<br>
+    simple-guardian-client login "{{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}"<br>
+  </code>
+</div>

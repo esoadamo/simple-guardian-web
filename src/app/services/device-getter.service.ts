@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class DeviceGetterService {
   ];
 
   private DEVICE_INFO = {
-    id: '1', name: 'testY', status: 'online',
+    id: '1', name: 'testY', status: '??',
     attacks: [{ip: '127.0.0.1', service: 'SSH', time: 0, user: 'user'}]
   };
 
@@ -27,6 +27,7 @@ export class DeviceGetterService {
     const mockDevice = this.DEVICE_INFO;
     mockDevice.id = device.id;
     mockDevice.name = device.name;
+    mockDevice.status = device.status;
 
     return of<Device>(this.DEVICE_INFO);
   }
