@@ -8,7 +8,9 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./device-list.component.scss']
 })
 export class DeviceListComponent implements OnInit {
-  protected devices: DeviceBasic[];
+  protected devicesOnline: DeviceBasic[];
+  protected devicesOffline: DeviceBasic[];
+  protected devicesNotLinked: DeviceBasic[];
   protected selectedDeviceVar: DeviceBasic;
 
   set selectedDevice(device: DeviceBasic) {
@@ -29,12 +31,14 @@ export class DeviceListComponent implements OnInit {
       this.selectedDevice = {id: selectedID, name: 'unknown', status: 'unknown'};
     }
     this.deviceGetter.getDevices().subscribe(devices => {
-      this.devices = devices;
       // Update selected device
       if (this.selectedDeviceVar) {
         console.log('ye');
-        this.selectedDevice = this.devices.filter(d => d.id === this.selectedDeviceVar.id)[0];
+        this.selectedDevice = devices.filter(d => d.id === this.selectedDeviceVar.id)[0];
       }
+      this.devicesOffline = devices.filter(d => d.status === 'offline');
+      this.devicesOnline = devices.filter(d => d.status === 'online');
+      this.devicesNotLinked = devices.filter(d => d.status === 'not-linked');
     });
   }
 

@@ -1,6 +1,55 @@
-<div (click)="selectedDevice = device" *ngFor="let device of devices"
+<div class="device">
+  <div class="device-status"></div>
+  <div class="device-name">Your devices</div>
+  <div class="device-status"></div>
+</div>
+
+<div class="device clickable">
+  <div class="device-status">+</div>
+  <div class="device-name">Add new device</div>
+  <div class="device-status">+</div>
+</div>
+
+<div class="sep"></div>
+
+<div *ngIf="devicesOnline && devicesOnline.length > 0" class="device">
+  <div class="device-status"></div>
+  <div class="device-name">Online devices</div>
+  <div class="device-status"></div>
+</div>
+<div (click)="selectedDevice = device" *ngFor="let device of devicesOnline"
      [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
-     class="device" routerLink="/control/{{device.id}}">
+     class="device clickable" routerLink="/control/{{device.id}}">
+  <div class="device-status {{ device.status }}"></div>
+  <div class="device-name">{{ device.name }}</div>
+  <div class="device-status {{ device.status }}"></div>
+</div>
+
+<div class="sep"></div>
+
+<div *ngIf="devicesOffline && devicesOnline.length > 0" class="device">
+  <div class="device-status"></div>
+  <div class="device-name">Offline devices</div>
+  <div class="device-status"></div>
+</div>
+<div (click)="selectedDevice = device" *ngFor="let device of devicesOffline"
+     [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
+     class="device clickable" routerLink="/control/{{device.id}}">
+  <div class="device-status {{ device.status }}"></div>
+  <div class="device-name">{{ device.name }}</div>
+  <div class="device-status {{ device.status }}"></div>
+</div>
+
+<div class="sep"></div>
+
+<div class="device">
+  <div class="device-status"></div>
+  <div class="device-name">Not linked devices</div>
+  <div class="device-status"></div>
+</div>
+<div (click)="selectedDevice = device" *ngFor="let device of devicesNotLinked"
+     [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
+     class="device clickable" routerLink="/control/{{device.id}}">
   <div class="device-status {{ device.status }}"></div>
   <div class="device-name">{{ device.name }}</div>
   <div class="device-status {{ device.status }}"></div>

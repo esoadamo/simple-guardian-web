@@ -3,20 +3,29 @@ $fontSize:25px;
 :host {
   overflow-y: auto;
   overflow-x: hidden;
+  background: #2d2d2d;
+  padding-right: 10px;
+  border-right: 2px solid #3f3f3f;
 }
 
 .device {
   border: 1px solid black;
   font-size: $fontSize;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
   background: #474747;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+
+  div {
+    display: inline-block;
+  }
 }
 
-.device:hover {
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
   filter: brightness(1.1);
 }
 
@@ -30,7 +39,8 @@ $fontSize:25px;
   min-width: $fontSize;
   min-height: $fontSize;
   border-radius: $fontSize;
-  margin: 5px 1ex 5px 1ex;
+  margin-left: .5ex;
+  margin-right: .5ex;
 }
 
 .device-status.online {
@@ -46,5 +56,10 @@ $fontSize:25px;
 }
 
 .device-name {
-  margin-left: 3ex;
+  width: calc(100% - (2 * #{$fontSize}) - 3.5ex)
+}
+
+.sep {
+  min-height: 1em;
+  width: 100%;
 }
