@@ -7,10 +7,8 @@
   Please, select one of the options
 </div>
 <div *ngIf="option && option === 'auto'" class="option-content">
-  <div class="warning">
-    <span class="sign">⚠</span>
-    <span>WARNING: You should always check any script that you download from the internet!</span>
-  </div>
+  <app-warning-div
+    [text]="'WARNING: You should always check any script that you download from the internet!'"></app-warning-div>
   <div>Enter following command into your terminal and the script will do everything for you:</div>
   <code>
     wget -qO- "{{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}/auto"| sudo python3 -

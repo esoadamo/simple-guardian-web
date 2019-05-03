@@ -8,6 +8,7 @@ import {DeviceInfoComponent} from './device-info/device-info.component';
 import {AppRoutingModule} from './app-routing.module';
 import {RouterModule} from '@angular/router';
 import {InstallationModeSelectComponent} from './device-info/instalation-mode-select/installation-mode-select.component';
+import {WarningDivComponent} from './warning-div/warning-div.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {InstallationModeSelectComponent} from './device-info/instalation-mode-se
     ControlPanelComponent,
     DeviceListComponent,
     DeviceInfoComponent,
-    InstallationModeSelectComponent
+    InstallationModeSelectComponent,
+    WarningDivComponent
   ],
   imports: [
     BrowserModule,

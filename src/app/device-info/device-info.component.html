@@ -1,7 +1,7 @@
 <div *ngIf="selectedDeviceVar; else devicesInfo">
   <div class="device-name">{{ selectedDeviceVar.name | uppercase }}</div>
   <div *ngIf="selectedDeviceVar.status === 'offline'" style="text-align: center; padding-top: 1em">
-    We were unable to establish connection with your device. Stay tuned.
+    <app-warning-div [text]="'We were unable to establish connection with your device. Stay tuned.'"></app-warning-div>
   </div>
   <app-instalation-mode-select *ngIf="selectedDeviceVar.status === 'not-linked'"
                                [selectedDevice]="selectedDeviceVar"></app-instalation-mode-select>

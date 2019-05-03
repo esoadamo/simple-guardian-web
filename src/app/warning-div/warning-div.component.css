@@ -1,0 +1,14 @@
+:host {
+  border: 3px solid #73237d;
+  border-radius: 5px;
+  background: #2d2d2d;
+  width: calc(100% - 10ex);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign {
+  font-size: 2em;
+  padding-right: 1ex;
+}
