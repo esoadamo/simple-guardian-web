@@ -1,0 +1,41 @@
+$fontSize:25px;
+
+:host {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.device {
+  border: 1px solid black;
+  font-size: $fontSize;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.device-status {
+  width: $fontSize;
+  height: $fontSize;
+  min-width: $fontSize;
+  min-height: $fontSize;
+  border-radius: $fontSize;
+  margin: 5px 1ex 5px 1ex;
+}
+
+.device-status.online {
+  background: greenyellow;
+}
+
+.device-status.offline {
+  background: red;
+}
+
+.device-status.not-linked {
+  background: gray;
+}
+
+.device-name {
+  margin-left: 3ex;
+}

@@ -1,0 +1,16 @@
+<p *ngIf="selectedDeviceVar; else devicesInfo">device is selected</p>
+<ng-template #devicesInfo><p *ngIf="devicesInfo; else loadingInfo">
+  Welcome to the control panel!<br>
+  <--- Select (or create new) device on the right to manage them<br>
+  Right now you have {{devicesInfo.total}} devices!
+  <span *ngIf="devicesInfo.offline > 0"><br>{{devicesInfo.offline}} device{{devicesInfo.offline == 1 ? ' is' : 's are'}}
+    offline</span>
+  <span *ngIf="devicesInfo.needsLinking > 0"><br>{{devicesInfo.needsLinking}}
+    device{{devicesInfo.needsLinking == 1 ? ' needs' : 's need'}} link with your account</span>
+</p>
+</ng-template>
+<ng-template #loadingInfo>
+  <p>
+    Loading info about your devices...
+  </p>
+</ng-template>
