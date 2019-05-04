@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {interval, Observable, of} from 'rxjs';
+import {interval, Observable} from 'rxjs';
 import {HttpService} from './http.service';
 import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
 import {Router} from '@angular/router';
@@ -8,11 +8,6 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class DeviceGetterService {
-
-  private DEVICE_INFO = {
-    id: '1', name: 'testY', status: '??',
-    attacks: [{ip: '127.0.0.1', service: 'SSH', time: 0, user: 'user'}]
-  };
 
   private autoresfreshTimer = null;
 
@@ -44,12 +39,7 @@ export class DeviceGetterService {
   }
 
   getDeviceInfo(device: DeviceBasic): Observable<Device> {
-    const mockDevice = this.DEVICE_INFO;
-    mockDevice.id = device.id;
-    mockDevice.name = device.name;
-    mockDevice.status = device.status;
-
-    return of<Device>(this.DEVICE_INFO);
+    return this.httpService.get(`/api/device/${device.id}/info`);
   }
 
   deviceDelete(device): Observable<{ success: boolean, message: string }> {
@@ -71,6 +61,7 @@ export interface DeviceBasic {
 
 export interface Device extends DeviceBasic {
   attacks: Attack[];
+  bans: Ban[];
 }
 
 export interface Attack {
@@ -78,4 +69,9 @@ export interface Attack {
   service: string;
   time: number;
   user: string | null;
+}
+
+export interface Ban {
+  ip: string;
+  time: number;
 }

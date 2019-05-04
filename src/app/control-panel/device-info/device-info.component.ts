@@ -14,11 +14,14 @@ export class DeviceInfoComponent implements OnInit {
 
   @Input()
   set selectedDevice(device: DeviceBasic) {
-    this.selectedDeviceVar = null;
     if (!device) {
+      this.selectedDeviceVar = null;
       return;
     }
-    this.deviceGetter.getDeviceInfo(device).subscribe(dev => this.selectedDeviceVar = dev);
+    this.deviceGetter.getDeviceInfo(device).subscribe(dev => {
+      console.log(dev);
+      this.selectedDeviceVar = dev;
+    });
   }
 
   ngOnInit() {

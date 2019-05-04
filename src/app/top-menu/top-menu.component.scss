@@ -1,0 +1,42 @@
+:host {
+  height: 25px;
+  background: #2d2d2d;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2ex;
+  padding-right: 2ex;
+  width: calc(100% - 4ex);
+  border-bottom: 2px solid #3f3f3f;
+}
+
+* {
+  margin-left: 1.5ex;
+}
+
+
+.top-button {
+  background: #2d2d2d;
+  border: 2px solid #3f3f3f;
+  border-top: 0;
+  padding: 2px 1ex;
+  margin: 0;
+  cursor: pointer;
+}
+
+.top-button:hover {
+  filter: brightness(1.1);
+}
+
+div {
+  * {
+    display: inline;
+    margin-left: 3ex;
+  }
+}
+
+.active {
+  background: #575555;
+  border-color: #6ceaff;
+}

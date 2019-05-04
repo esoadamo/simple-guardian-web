@@ -21,6 +21,11 @@ export class HttpService {
     localStorage.setItem('authSecret', val);
   }
 
+  logout() {
+    this.authSecret = '';
+    this.router.navigate(['/']);
+  }
+
   get(url: string, fetchUsernameIfNeeded = true): Observable<any> {
     if (fetchUsernameIfNeeded && this.username.length === 0) {
       this.getUsername();

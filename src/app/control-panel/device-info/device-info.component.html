@@ -3,8 +3,16 @@
   <div *ngIf="selectedDeviceVar.status === 'offline'" style="text-align: center; padding-top: 1em">
     <app-warning-div [text]="'We were unable to establish connection with your device. Stay tuned.'"></app-warning-div>
   </div>
-  <app-instalation-mode-select *ngIf="selectedDeviceVar.status === 'not-linked'"
+  <app-instalation-mode-select *ngIf="selectedDeviceVar.status === 'not-linked'; else selectedDeviceInfo"
                                [selectedDevice]="selectedDeviceVar"></app-instalation-mode-select>
+  <ng-template #selectedDeviceInfo>
+    <div class="buttons">
+      <div class="button">Attacks</div>
+      <div class="button">Bans</div>
+      <div class="button">Device profiles</div>
+      <div class="button">Device config</div>
+    </div>
+  </ng-template>
 </div>
 <ng-template #devicesInfoPage><p *ngIf="devicesInfo; else loadingInfo">
   Welcome to the control panel!<br>

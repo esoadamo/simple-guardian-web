@@ -1,9 +1,10 @@
 <!--suppress HtmlFormInputWithoutLabel -->
+<app-top-menu></app-top-menu>
 <div class="header">
   Simple-Guardian login
 </div>
-<input [(ngModel)]="email" placeholder="mail" type="mail">
-<input [(ngModel)]="password" placeholder="password" type="password">
+<input (keyup.enter)="login()" [(ngModel)]="email" placeholder="mail" type="mail">
+<input (keyup.enter)="login()" [(ngModel)]="password" placeholder="password" type="password">
 <div (click)="login()" class="button">
   Login
 </div>
