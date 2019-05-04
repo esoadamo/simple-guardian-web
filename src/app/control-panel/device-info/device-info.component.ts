@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Device, DeviceBasic, DeviceGetterService} from '../services/device-getter.service';
+import {Device, DeviceBasic, DeviceGetterService} from '../../services/device-getter.service';
 
 @Component({
   selector: 'app-device-info',

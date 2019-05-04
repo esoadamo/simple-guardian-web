@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input, .button {
+  font-size: 30px;
+  margin-bottom: .5em;
+  width: 40ex;
+  min-width: 20ex;
+  text-align: center;
+}
+
+.header {
+  font-size: 50px;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.button {
+  background: #2d2d2d;
+  border: 2px solid #02a28e;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: .5em;
+  cursor: pointer;
+}
+
+.button:hover {
+  filter: brightness(1.1);
+}

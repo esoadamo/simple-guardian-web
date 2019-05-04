@@ -1,26 +1,22 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
+import {HttpService} from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceGetterService {
-  private DEVICES = [
-    {id: '1', name: 'testY', status: 'online'},
-    {id: '2', name: 'testN', status: 'offline'},
-    {id: '3', name: 'testI', status: 'not-linked'},
-    {id: '4', name: 'testY', status: 'online'},
-  ];
 
   private DEVICE_INFO = {
     id: '1', name: 'testY', status: '??',
     attacks: [{ip: '127.0.0.1', service: 'SSH', time: 0, user: 'user'}]
   };
 
-  constructor() { }
+  constructor(private httpService: HttpService) {
+  }
 
   getDevices(): Observable<DeviceBasic[]> {
-    return of<DeviceBasic[]>(this.DEVICES);
+    return this.httpService.get('/api/listDevices');
   }
 
   getDeviceInfo(device: DeviceBasic): Observable<Device> {

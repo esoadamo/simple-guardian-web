@@ -1,0 +1,41 @@
+:host {
+  position: fixed;
+  top: 100vh;
+  right: 5ex;
+  border: 2px solid #02a28e;
+  background: #2d2d2d;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
+  vertical-align: middle;
+  min-width: 40ex;
+  min-height: 5em;
+  animation: fadeInUp 10s linear;
+  animation-fill-mode: forwards;
+}
+
+:host(.error) {
+  background: red;
+}
+
+:host(.success) {
+  background: #9aff00;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    top: calc(100vh - 10em);
+  }
+  90% {
+    top: calc(100vh - 10em);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

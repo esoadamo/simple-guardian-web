@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DeviceInfoComponent } from './device-info.component';
+import {DeviceInfoComponent} from './device-info.component';
 
 describe('DeviceInfoComponent', () => {
   let component: DeviceInfoComponent;

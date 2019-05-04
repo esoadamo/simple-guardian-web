@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DeviceBasic} from '../../services/device-getter.service';
+import {DeviceBasic} from '../../../services/device-getter.service';
 
 @Component({
   selector: 'app-instalation-mode-select',

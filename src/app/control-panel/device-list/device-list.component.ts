@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DeviceBasic, DeviceGetterService} from '../services/device-getter.service';
+import {DeviceBasic, DeviceGetterService} from '../../services/device-getter.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

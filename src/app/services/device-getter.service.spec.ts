@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { DeviceGetterService } from '../services/device-getter.service';
+import {DeviceGetterService} from './device-getter.service';
 
 describe('DeviceGetterService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
