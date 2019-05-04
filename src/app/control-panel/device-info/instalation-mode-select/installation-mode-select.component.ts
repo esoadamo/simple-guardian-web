@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DeviceBasic, DeviceGetterService} from '../../../services/device-getter.service';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-instalation-mode-select',
@@ -8,18 +9,14 @@ import {DeviceBasic, DeviceGetterService} from '../../../services/device-getter.
 })
 export class InstallationModeSelectComponent implements OnInit {
   protected option: string;
-  protected apiUrl: string;
-
-  protected username = 'mockUsername';
 
   @Input()
   protected selectedDevice: DeviceBasic;
 
-  constructor(private deviceGetter: DeviceGetterService) {
+  constructor(private deviceGetter: DeviceGetterService, private http: HttpService) {
   }
 
   ngOnInit() {
-    this.apiUrl = `${window.location.protocol}://${window.location.hostname}/api`;
   }
 
 }

@@ -1,7 +1,13 @@
 <div class="buttons">
-  <div (click)="option = 'deb'" class="button">I want to install on Ubuntu / Debian</div>
-  <div (click)="option = 'auto'" class="button">I want to install on any other Linux</div>
-  <div (click)="option = 'login'" class="button">Already installed, just login</div>
+  <div (click)="option = 'deb'" [class.selected]="option === 'deb'" class="button">
+    I want to install on Ubuntu / Debian
+  </div>
+  <div (click)="option = 'auto'" [class.selected]="option === 'auto'" class="button">
+    I want to install on any other Linux
+  </div>
+  <div (click)="option = 'login'" [class.selected]="option === 'login'" class="button">
+    Already installed, just login
+  </div>
 </div>
 <div *ngIf="!option" class="option-content">
   Please, select one of the options
@@ -11,13 +17,14 @@
     [text]="'WARNING: You should always check any script that you download from the internet!'"></app-warning-div>
   <div>Enter following command into your terminal and the script will do everything for you:</div>
   <code>
-    wget -qO- "{{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}/auto"| sudo python3 -
+    wget -qO- "{{this.http.API_SERVER}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}/auto"| sudo python3 -
   </code>
 </div>
 <div *ngIf="option && option === 'login'" class="option-content">
   <div>You can link your device with this account by using simple-guardian-client:</div>
   <code>
-    sudo simple-guardian-client login {{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}
+    sudo simple-guardian-client login {{this.http.API_SERVER}}api/device/new/{{this.http.username}}
+    /{{selectedDevice.id}}
   </code>
 </div>
 <div *ngIf="option && option === 'deb'" class="option-content">
@@ -35,7 +42,8 @@
     # install<br>
     sudo apt install simple-guardian<br>
     # login with the server<br>
-    simple-guardian-client login "{{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}"<br>
+    simple-guardian-client login "{{this.http.API_SERVER}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}
+    "<br>
   </code>
 </div>
 <div class="option-content">OR</div>

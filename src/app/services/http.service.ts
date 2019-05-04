@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class HttpService {
   API_SERVER = 'http://localhost:5000/';
+  username = '';
 
   private authSecretVar = '';
 
@@ -20,7 +21,11 @@ export class HttpService {
     localStorage.setItem('authSecret', val);
   }
 
-  get(url: string): Observable<any> {
+  get(url: string, fetchUsernameIfNeeded = true): Observable<any> {
+    if (fetchUsernameIfNeeded && this.username.length === 0) {
+      this.getUsername();
+    }
+
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
     headers = headers.append('sg-auth', this.authSecretVar);
@@ -40,6 +45,10 @@ export class HttpService {
   }
 
   post(url: string, data: any): Observable<any> {
+    if (this.username.length === 0) {
+      this.getUsername();
+    }
+
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
     headers = headers.append('sg-auth', this.authSecretVar);
@@ -57,6 +66,12 @@ export class HttpService {
         observer.next(resp.message);
       });
     });
+  }
+
+  getUsername(): Observable<string> {
+    const r = this.get('/api/whoami', false);
+    r.subscribe(rr => this.username = rr);
+    return r;
   }
 }
 

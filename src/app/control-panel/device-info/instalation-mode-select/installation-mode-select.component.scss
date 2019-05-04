@@ -11,6 +11,11 @@ $button-margin: 2ex;
   background: #474747;
 }
 
+.button.selected {
+  background: #02a28e;
+}
+
+
 .button.delete {
   height: 1em;
   width: 80%;
