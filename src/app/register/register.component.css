@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input, .button {
+  font-size: 30px;
+  margin-bottom: .5em;
+  width: 40ex;
+  min-width: 20ex;
+  text-align: center;
+}
+
+.header {
+  font-size: 50px;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.warning {
+  background-color: red;
+}
