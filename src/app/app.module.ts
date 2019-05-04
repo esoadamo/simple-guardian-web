@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BalloonMessageComponent} from './balloon-message/balloon-message.component';
 import {DialogComponent} from './dialog/dialog.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {TopMenuComponent} from './top-menu/top-menu.component';
     BalloonMessageComponent,
     DialogComponent,
     TopMenuComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
