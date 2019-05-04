@@ -1,4 +1,4 @@
-<div *ngIf="selectedDeviceVar; else devicesInfo">
+<div *ngIf="selectedDeviceVar; else devicesInfoPage">
   <div class="device-name">{{ selectedDeviceVar.name | uppercase }}</div>
   <div *ngIf="selectedDeviceVar.status === 'offline'" style="text-align: center; padding-top: 1em">
     <app-warning-div [text]="'We were unable to establish connection with your device. Stay tuned.'"></app-warning-div>
@@ -6,9 +6,9 @@
   <app-instalation-mode-select *ngIf="selectedDeviceVar.status === 'not-linked'"
                                [selectedDevice]="selectedDeviceVar"></app-instalation-mode-select>
 </div>
-<ng-template #devicesInfo><p *ngIf="devicesInfo; else loadingInfo">
+<ng-template #devicesInfoPage><p *ngIf="devicesInfo; else loadingInfo">
   Welcome to the control panel!<br>
-  <--- Select (or create new) device on the right to manage them<br>
+  <--- Select (or create new) device on the left to manage them<br>
   Right now you have {{devicesInfo.total}} devices!
   <span *ngIf="devicesInfo.offline > 0"><br>{{devicesInfo.offline}} device{{devicesInfo.offline == 1 ? ' is' : 's are'}}
     offline</span>

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DeviceBasic} from '../../../services/device-getter.service';
+import {DeviceBasic, DeviceGetterService} from '../../../services/device-getter.service';
 
 @Component({
   selector: 'app-instalation-mode-select',
@@ -15,7 +15,7 @@ export class InstallationModeSelectComponent implements OnInit {
   @Input()
   protected selectedDevice: DeviceBasic;
 
-  constructor() {
+  constructor(private deviceGetter: DeviceGetterService) {
   }
 
   ngOnInit() {

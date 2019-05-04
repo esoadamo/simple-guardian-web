@@ -31,14 +31,13 @@ export class DeviceListComponent implements OnInit {
   ngOnInit() {
     const selectedID = this.route.snapshot.paramMap.get('id');
     if (selectedID) {
-      console.log('getting device info');
       this.selectedDevice = {id: selectedID, name: 'unknown', status: 'unknown'};
     }
     this.deviceGetter.devicesListUpdate.subscribe(devices => {
       console.log(devices);
       // Update selected device
       if (this.selectedDeviceVar) {
-        this.selectedDevice = devices.filter(d => d.id === this.selectedDeviceVar.id)[0];
+        this.selectedDevice = devices.filter(d => d.id === this.selectedDeviceVar.id)[0] || null;
       }
       this.devicesOffline = devices.filter(d => d.status === 'offline');
       this.devicesOnline = devices.filter(d => d.status === 'online');

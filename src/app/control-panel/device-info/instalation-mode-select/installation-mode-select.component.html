@@ -38,3 +38,7 @@
     simple-guardian-client login "{{apiUrl}}/{{username}}/new_device/{{selectedDevice.id}}"<br>
   </code>
 </div>
+<div class="option-content">OR</div>
+<div class="buttons">
+  <div (click)="this.deviceGetter.deviceDelete(selectedDevice)" class="button delete">Delete this device</div>
+</div>

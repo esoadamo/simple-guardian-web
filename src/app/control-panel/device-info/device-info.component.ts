@@ -14,20 +14,15 @@ export class DeviceInfoComponent implements OnInit {
 
   @Input()
   set selectedDevice(device: DeviceBasic) {
+    this.selectedDeviceVar = null;
     if (!device) {
       return;
     }
-    this.selectedDeviceVar = null;
     this.deviceGetter.getDeviceInfo(device).subscribe(dev => this.selectedDeviceVar = dev);
   }
 
   ngOnInit() {
-    setInterval(this.updateDevicesInfo, 30000);
-    this.updateDevicesInfo();
-  }
-
-  updateDevicesInfo() {
-    this.deviceGetter.getDevices().subscribe(data => {
+    this.deviceGetter.devicesListUpdate.subscribe(data => {
       this.devicesInfo = {
         offline: data.filter(dev => dev.status === 'offline').length,
         needsLinking: data.filter(dev => dev.status === 'not-linked').length,

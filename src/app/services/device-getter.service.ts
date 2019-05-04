@@ -1,6 +1,8 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpService} from './http.service';
+import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +17,11 @@ export class DeviceGetterService {
   @Output()
   devicesListUpdate: EventEmitter<DeviceBasic[]> = new EventEmitter();
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private balloon: BalloonMessageFactoryService, private router: Router) {
   }
 
   getDevices(): Observable<DeviceBasic[]> {
-    const r = this.httpService.get('/api/listDevices');
+    const r = this.httpService.get('/api/device/list');
     r.subscribe(rr => this.devicesListUpdate.emit(rr));
     return r;
   }
@@ -31,6 +33,16 @@ export class DeviceGetterService {
     mockDevice.status = device.status;
 
     return of<Device>(this.DEVICE_INFO);
+  }
+
+  deviceDelete(device): Observable<{ success: boolean, message: string }> {
+    const r = this.httpService.post('/api/device/delete', {id: device.id});
+    r.subscribe(rr => {
+      this.balloon.show(rr.message, rr.success ? 'success' : 'error');
+      this.getDevices();
+      this.router.navigate(['/control']);
+    });
+    return r;
   }
 }
 
