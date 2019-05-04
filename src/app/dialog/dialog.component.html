@@ -1,0 +1,9 @@
+<div class="form">
+  <div class="question">{{ question }}</div>
+  <input (keyup.enter)="submit()" [(ngModel)]="respond" type="text">
+  <div class="buttons">
+    <div (click)="submit()" class="button">Ok</div>
+    <div (click)="submit(true)" class="button">Cancel</div>
+  </div>
+</div>
+<div class="background"></div>

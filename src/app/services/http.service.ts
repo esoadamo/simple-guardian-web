@@ -26,16 +26,15 @@ export class HttpService {
     headers = headers.append('sg-auth', this.authSecretVar);
 
     return new Observable((observer) => {
-      const {next} = observer;
 
       this.http.get<ApiResponse>(`${this.API_SERVER}/${url}`, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
           // noinspection JSIgnoredPromiseFromCall
           this.router.navigate(['/login']);
-          next(null);
+          observer.next(null);
         }
 
-        next(resp.message);
+        observer.next(resp.message);
       });
     });
   }

@@ -17,16 +17,3 @@ input, .button {
   margin-top: 2em;
   margin-bottom: 1em;
 }
-
-.button {
-  background: #2d2d2d;
-  border: 2px solid #02a28e;
-  border-radius: 5px;
-  padding: 10px;
-  margin-top: .5em;
-  cursor: pointer;
-}
-
-.button:hover {
-  filter: brightness(1.1);
-}

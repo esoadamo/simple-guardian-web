@@ -1,27 +1,33 @@
 import {ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector} from '@angular/core';
-import {BalloonMessageComponent} from './balloon-message.component';
+import {DialogComponent} from './dialog.component';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BalloonMessageFactoryService {
+export class DialogService {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private appRef: ApplicationRef,
               private injector: Injector) {
   }
 
-  show(text: string, level = 'info') {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(BalloonMessageComponent);
+  show(question: string, respond = ''): Observable<string | null> {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DialogComponent);
     const componentRef = componentFactory.create(this.injector);
     this.appRef.attachView(componentRef.hostView);
-    componentRef.instance.message = text;
+    componentRef.instance.question = question;
+    componentRef.instance.respond = respond;
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    domElem.classList.add(level);
     document.body.appendChild(domElem);
-    setTimeout(() => {
+
+    const submittedRespond = componentRef.instance.submitted;
+
+    submittedRespond.subscribe(() => {
       this.appRef.detachView(componentRef.hostView);
       componentRef.destroy();
-    }, 10000);
+    });
+
+    return submittedRespond;
   }
 }

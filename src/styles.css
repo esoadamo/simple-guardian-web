@@ -16,3 +16,17 @@ code {
   border-radius: 5px;
   text-align: left;
 }
+
+.button {
+  background: #2d2d2d;
+  border: 2px solid #02a28e;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: .5em;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  filter: brightness(1.1);
+}

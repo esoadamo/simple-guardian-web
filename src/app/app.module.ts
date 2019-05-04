@@ -13,6 +13,7 @@ import {WarningDivComponent} from './warning-div/warning-div.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BalloonMessageComponent} from './balloon-message/balloon-message.component';
+import {DialogComponent} from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {BalloonMessageComponent} from './balloon-message/balloon-message.compone
     WarningDivComponent,
     LoginComponent,
     BalloonMessageComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,10 @@ import {BalloonMessageComponent} from './balloon-message/balloon-message.compone
     ReactiveFormsModule,
     FormsModule,
   ],
-  entryComponents: [BalloonMessageComponent],
+  entryComponents: [
+    BalloonMessageComponent,
+    DialogComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

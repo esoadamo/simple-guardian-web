@@ -4,7 +4,7 @@
   <div class="device-status"></div>
 </div>
 
-<div class="device clickable">
+<div (click)="addNewDevice()" class="device clickable">
   <div class="device-status">+</div>
   <div class="device-name">Add new device</div>
   <div class="device-status">+</div>
@@ -42,7 +42,7 @@
 
 <div class="sep"></div>
 
-<div class="device">
+<div *ngIf="devicesNotLinked && devicesNotLinked.length > 0" class="device">
   <div class="device-status"></div>
   <div class="device-name">Not linked devices</div>
   <div class="device-status"></div>
