@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {interval, Observable, of} from 'rxjs';
 import {HttpService} from './http.service';
 import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
 import {Router} from '@angular/router';
@@ -14,8 +14,25 @@ export class DeviceGetterService {
     attacks: [{ip: '127.0.0.1', service: 'SSH', time: 0, user: 'user'}]
   };
 
+  private autoresfreshTimer = null;
+
   @Output()
   devicesListUpdate: EventEmitter<DeviceBasic[]> = new EventEmitter();
+
+  set autorefresh(status: boolean) {
+    if (status && this.autoresfreshTimer !== null) {
+      return;
+    }
+    if (!status && this.autoresfreshTimer === null) {
+      return;
+    }
+    if (status) {
+      interval(30 * 1000).subscribe(() => this.getDevices());
+    } else {
+      clearInterval(this.autoresfreshTimer);
+      this.autoresfreshTimer = null;
+    }
+  }
 
   constructor(private httpService: HttpService, private balloon: BalloonMessageFactoryService, private router: Router) {
   }

@@ -44,6 +44,7 @@ export class DeviceListComponent implements OnInit {
       this.devicesNotLinked = devices.filter(d => d.status === 'not-linked');
     });
     this.deviceGetter.getDevices();
+    this.deviceGetter.autorefresh = true;
   }
 
   addNewDevice() {

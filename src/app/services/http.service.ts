@@ -70,7 +70,7 @@ export class HttpService {
 
   getUsername(): Observable<string> {
     const r = this.get('/api/whoami', false);
-    r.subscribe(rr => this.username = rr);
+    r.subscribe(rr => this.username = rr.trim());
     return r;
   }
 }
