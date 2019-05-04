@@ -23,6 +23,7 @@ export class HttpService {
 
   logout() {
     this.authSecret = '';
+    this.username = '';
     this.router.navigate(['/']);
   }
 

@@ -16,6 +16,7 @@ import {BalloonMessageComponent} from './balloon-message/balloon-message.compone
 import {DialogComponent} from './dialog/dialog.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
 import {RegisterComponent} from './register/register.component';
+import {HomePageComponent} from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {RegisterComponent} from './register/register.component';
     DialogComponent,
     TopMenuComponent,
     RegisterComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,

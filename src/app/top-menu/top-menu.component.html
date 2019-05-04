@@ -1,6 +1,6 @@
 <div class="buttons">
   <div class="top-button" routerLink="/home" routerLinkActive="active">Main page</div>
-  <div class="top-button" routerLink="/control" routerLinkActive="active">Control</div>
+  <div *ngIf="http.username.length > 0" class="top-button" routerLink="/control" routerLinkActive="active">Control</div>
   <div class="top-button" routerLink="/hub" routerLinkActive="active">Hub</div>
 </div>
 <div *ngIf="http.username.length > 0">
