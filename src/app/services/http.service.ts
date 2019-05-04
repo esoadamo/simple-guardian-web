@@ -40,12 +40,13 @@ export class HttpService {
   }
 
   post(url: string, data: any): Observable<any> {
-    console.log('performing http');
-
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('sg-auth', this.authSecretVar);
 
     return new Observable((observer) => {
 
-      this.http.post<ApiResponse>(`${this.API_SERVER}/${url}`, data).subscribe(resp => {
+      this.http.post<ApiResponse>(`${this.API_SERVER}/${url}`, data, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
           console.log('needsLogin');
           // noinspection JSIgnoredPromiseFromCall

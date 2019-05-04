@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpService} from './http.service';
 
@@ -12,11 +12,16 @@ export class DeviceGetterService {
     attacks: [{ip: '127.0.0.1', service: 'SSH', time: 0, user: 'user'}]
   };
 
+  @Output()
+  devicesListUpdate: EventEmitter<DeviceBasic[]> = new EventEmitter();
+
   constructor(private httpService: HttpService) {
   }
 
   getDevices(): Observable<DeviceBasic[]> {
-    return this.httpService.get('/api/listDevices');
+    const r = this.httpService.get('/api/listDevices');
+    r.subscribe(rr => this.devicesListUpdate.emit(rr));
+    return r;
   }
 
   getDeviceInfo(device: DeviceBasic): Observable<Device> {
