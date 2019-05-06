@@ -30,3 +30,7 @@ code {
 .button:hover {
   filter: brightness(1.1);
 }
+
+.button.active {
+  background: #02a28e;
+}

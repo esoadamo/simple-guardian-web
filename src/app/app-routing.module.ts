@@ -11,6 +11,10 @@ const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'control', component: ControlPanelComponent},
   {path: 'control/:id', component: ControlPanelComponent},
+  {path: 'control/:id/config', component: ControlPanelComponent},
+  {path: 'control/:id/attacks', component: ControlPanelComponent},
+  {path: 'control/:id/bans', component: ControlPanelComponent},
+  {path: 'control/:id/profiles', component: ControlPanelComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ];

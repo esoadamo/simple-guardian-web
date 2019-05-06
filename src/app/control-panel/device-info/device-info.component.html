@@ -7,10 +7,60 @@
                                [selectedDevice]="selectedDeviceVar"></app-instalation-mode-select>
   <ng-template #selectedDeviceInfo>
     <div class="buttons">
-      <div class="button">Attacks</div>
-      <div class="button">Bans</div>
+      <div (click)="selectedInfoPanel = 'attacks'" [class.active]="selectedInfoPanel==='attacks'" class="button">
+        Attacks
+      </div>
+      <div (click)="selectedInfoPanel = 'bans'" [class.active]="selectedInfoPanel==='bans'" class="button">Bans</div>
       <div class="button">Device profiles</div>
-      <div class="button">Device config</div>
+      <div (click)="selectedInfoPanel = 'config'" [class.active]="selectedInfoPanel==='config'" class="button">
+        Device config
+      </div>
+    </div>
+    <div *ngIf="selectedInfoPanel === 'config'" class="info-content">
+      <div>
+        <div class="text">Installed version: {{selectedDeviceVar.version}}</div>
+        <div (click)="this.deviceGetter.deviceUpdate(selectedDeviceVar)" class="button">Update
+          to {{selectedDeviceVar.version}}</div>
+      </div>
+      <div (click)="this.deviceGetter.deviceDelete(selectedDeviceVar)" class="button">Delete this device</div>
+    </div>
+    <div *ngIf="selectedInfoPanel === 'bans'" class="info-content">
+      <table>
+        <thead>
+        <tr>
+          <th>Time</th>
+          <th>IP</th>
+          <th>Attacks count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ban of selectedDeviceVar.bans">
+          <td>{{formatDate(ban.time)}}</td>
+          <td>{{ban.ip}}</td>
+          <td>{{ban.attacksCount}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="selectedInfoPanel === 'attacks'" class="info-content">
+      <table>
+        <thead>
+        <tr>
+          <th>Time</th>
+          <th>IP</th>
+          <th>Profile</th>
+          <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let attack of selectedDeviceVar.attacks">
+          <td>{{formatDate(attack.time)}}</td>
+          <td>{{attack.ip}}</td>
+          <td>{{attack.profile}}</td>
+          <td>{{attack.user}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </ng-template>
 </div>

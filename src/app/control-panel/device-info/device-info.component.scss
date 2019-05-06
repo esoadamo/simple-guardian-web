@@ -1,0 +1,42 @@
+:host {
+  margin-left: 5ex;
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  overflow: auto;
+}
+
+.device-name {
+  font-size: 40px;
+  margin-bottom: .5em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.info-content {
+  width: calc(100% - 12px - 2ex);
+  border: 2px solid #2d2d2d;
+  margin-top: 2em;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+  overflow-y: scroll;
+
+  table, tbody, thead {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 2px solid #575555;
+  }
+
+
+  tbody {
+    overflow: auto;
+  }
+}

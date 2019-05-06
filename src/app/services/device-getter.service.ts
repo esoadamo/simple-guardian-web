@@ -51,6 +51,14 @@ export class DeviceGetterService {
     });
     return r;
   }
+
+  deviceUpdate(device): Observable<{ success: boolean, message: string }> {
+    const r = this.httpService.post('/api/device/update', {id: device.id});
+    r.subscribe(rr => {
+      this.balloon.show(rr.message, rr.success ? 'success' : 'error');
+    });
+    return r;
+  }
 }
 
 export interface DeviceBasic {
@@ -62,11 +70,12 @@ export interface DeviceBasic {
 export interface Device extends DeviceBasic {
   attacks: Attack[];
   bans: Ban[];
+  version: string;
 }
 
 export interface Attack {
   ip: string;
-  service: string;
+  profile: string;
   time: number;
   user: string | null;
 }
@@ -74,4 +83,5 @@ export interface Attack {
 export interface Ban {
   ip: string;
   time: number;
+  attacksCount: number;
 }

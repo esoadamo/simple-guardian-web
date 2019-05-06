@@ -6,5 +6,6 @@
   <code>$ enjoy "server secured against brute force attacks"</code>
   <div class="text">Yes! It can be this simple! Secure your server under one minute, for free, open source. Join now!
   </div>
-  <div class="button" routerLink="/register">Join now</div>
+  <div *ngIf="http.username.length === 0" class="button" routerLink="/register">Join now</div>
+  <div *ngIf="http.username.length > 0" class="button" routerLink="/control">Control panel</div>
 </div>
