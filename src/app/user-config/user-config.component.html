@@ -1,0 +1,12 @@
+<app-top-menu></app-top-menu>
+<div class="theRest">
+  <div class="form">
+    <div>Welcome to your config, {{http.username}}!</div>
+    <div>You can:</div>
+    <div (click)="changePassword()" class="button">Change password</div>
+    <input placeholder="new password" type="password">
+    <input placeholder="new password repeat" type="password">
+    <div>OR</div>
+    <div class="button">Delete your account</div>
+  </div>
+</div>

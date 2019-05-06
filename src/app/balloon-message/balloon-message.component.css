@@ -13,6 +13,7 @@
   min-height: 5em;
   animation: fadeInUp 10s linear;
   animation-fill-mode: forwards;
+  z-index: 2000;
 }
 
 :host(.error) {

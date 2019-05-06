@@ -4,11 +4,7 @@
 }
 
 .theRest {
-  width: 100%;
-  height: calc(100vh - 27px);
   display: flex;
-  margin: 0;
-  padding: 0;
 }
 
 app-device-list {

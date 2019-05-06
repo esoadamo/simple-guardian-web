@@ -79,6 +79,10 @@ export class HttpService {
     r.subscribe(rr => this.username = rr.trim());
     return r;
   }
+
+  checkPassword(password): Observable<boolean> {
+    return this.post('/api/password/check', {password});
+  }
 }
 
 interface ApiResponse {

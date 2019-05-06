@@ -1,0 +1,18 @@
+.theRest {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  * {
+    font-size: 25px;
+    margin-top: 1.25em;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: center;
+  }
+
+}

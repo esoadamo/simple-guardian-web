@@ -17,6 +17,8 @@ import {DialogComponent} from './dialog/dialog.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
 import {RegisterComponent} from './register/register.component';
 import {HomePageComponent} from './home-page/home-page.component';
+import {UserConfigComponent} from './user-config/user-config.component';
+import {PasswordCheckComponent} from './user-config/password-check/password-check.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import {HomePageComponent} from './home-page/home-page.component';
     TopMenuComponent,
     RegisterComponent,
     HomePageComponent,
+    UserConfigComponent,
+    PasswordCheckComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import {HomePageComponent} from './home-page/home-page.component';
   ],
   entryComponents: [
     BalloonMessageComponent,
-    DialogComponent
+    DialogComponent,
+    PasswordCheckComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

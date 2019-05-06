@@ -5,16 +5,14 @@ import {ControlPanelComponent} from './control-panel/control-panel.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HomePageComponent} from './home-page/home-page.component';
+import {UserConfigComponent} from './user-config/user-config.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'home', component: HomePageComponent},
   {path: 'control', component: ControlPanelComponent},
   {path: 'control/:id', component: ControlPanelComponent},
-  {path: 'control/:id/config', component: ControlPanelComponent},
-  {path: 'control/:id/attacks', component: ControlPanelComponent},
-  {path: 'control/:id/bans', component: ControlPanelComponent},
-  {path: 'control/:id/profiles', component: ControlPanelComponent},
+  {path: 'config', component: UserConfigComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ];
