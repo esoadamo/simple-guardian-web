@@ -11,10 +11,10 @@ import {HttpService} from '../../services/http.service';
   styleUrls: ['./device-list.component.scss']
 })
 export class DeviceListComponent implements OnInit {
-  protected devicesOnline: DeviceBasic[];
-  protected devicesOffline: DeviceBasic[];
-  protected devicesNotLinked: DeviceBasic[];
-  protected selectedDeviceVar: DeviceBasic;
+  devicesOnline: DeviceBasic[];
+  devicesOffline: DeviceBasic[];
+  devicesNotLinked: DeviceBasic[];
+  selectedDeviceVar: DeviceBasic;
 
   set selectedDevice(device: DeviceBasic) {
     this.selectedDeviceVar = device;
@@ -24,8 +24,8 @@ export class DeviceListComponent implements OnInit {
   @Output()
   deviceSelected: EventEmitter<DeviceBasic> = new EventEmitter();
 
-  constructor(private deviceGetter: DeviceGetterService, private route: ActivatedRoute, private dialogCreator: DialogService,
-              private balloonMessage: BalloonMessageFactoryService, private http: HttpService, private router: Router) {
+  constructor(public deviceGetter: DeviceGetterService, public route: ActivatedRoute, public dialogCreator: DialogService,
+              public balloonMessage: BalloonMessageFactoryService, public http: HttpService, public router: Router) {
   }
 
   ngOnInit() {

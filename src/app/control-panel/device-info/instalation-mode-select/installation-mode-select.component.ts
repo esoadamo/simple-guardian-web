@@ -8,12 +8,12 @@ import {HttpService} from '../../../services/http.service';
   styleUrls: ['./installation-mode-select.component.scss']
 })
 export class InstallationModeSelectComponent implements OnInit {
-  protected option: string;
+  option: string;
 
   @Input()
-  protected selectedDevice: DeviceBasic;
+  selectedDevice: DeviceBasic;
 
-  constructor(private deviceGetter: DeviceGetterService, private http: HttpService) {
+  constructor(public deviceGetter: DeviceGetterService, public http: HttpService) {
   }
 
   ngOnInit() {

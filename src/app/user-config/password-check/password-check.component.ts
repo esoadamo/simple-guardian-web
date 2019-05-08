@@ -8,7 +8,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class PasswordCheckComponent implements OnInit {
   @Output()
   submitted: EventEmitter<string | null> = new EventEmitter();
-  protected password = '';
+  password = '';
 
   constructor() {
   }

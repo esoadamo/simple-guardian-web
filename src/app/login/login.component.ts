@@ -9,8 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  protected email = '';
-  protected password = '';
+  email = '';
+  password = '';
 
 
   constructor(private http: HttpService, private balloonMsg: BalloonMessageFactoryService, private router: Router) {
@@ -25,11 +25,13 @@ export class LoginComponent implements OnInit {
         case 'ok':
           this.balloonMsg.show('Login successful', 'success');
           this.http.authSecret = resp.key;
+          this.password = '';
           // noinspection JSIgnoredPromiseFromCall
           this.router.navigate(['/control']);
           break;
         case 'failed':
           this.balloonMsg.show('Wrong username or password', 'error');
+          this.password = '';
           break;
         default:
           this.balloonMsg.show('Server error', 'error');

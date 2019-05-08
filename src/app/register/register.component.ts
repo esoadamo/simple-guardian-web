@@ -9,9 +9,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  protected email = '';
-  protected password = '';
-  protected passwordRepeat = '';
+  email = '';
+  password = '';
+  passwordRepeat = '';
 
   constructor(private balloon: BalloonMessageFactoryService, private http: HttpService, private router: Router) {
   }

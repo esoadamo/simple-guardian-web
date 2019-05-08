@@ -10,7 +10,7 @@ import {PasswordCheckService} from './password-check/password-check.service';
 })
 export class UserConfigComponent implements OnInit {
 
-  constructor(private http: HttpService, private router: Router, private passwordCheck: PasswordCheckService) {
+  constructor(public http: HttpService, private router: Router, private passwordCheck: PasswordCheckService) {
   }
 
   ngOnInit() {

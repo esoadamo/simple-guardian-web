@@ -8,7 +8,7 @@ import {HttpService} from '../services/http.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private http: HttpService) {
+  constructor(public http: HttpService) {
   }
 
   ngOnInit() {

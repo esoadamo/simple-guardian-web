@@ -7,11 +7,11 @@ import {Device, DeviceBasic, DeviceGetterService} from '../../services/device-ge
   styleUrls: ['./device-info.component.scss']
 })
 export class DeviceInfoComponent implements OnInit {
-  protected selectedDeviceVar: Device;
-  protected devicesInfo: { total: number, offline: number, needsLinking: number };
-  protected selectedInfoPanel: string;
+  selectedDeviceVar: Device;
+  devicesInfo: { total: number, offline: number, needsLinking: number };
+  selectedInfoPanel: string;
 
-  constructor(private deviceGetter: DeviceGetterService) {
+  constructor(public deviceGetter: DeviceGetterService) {
   }
 
   @Input()

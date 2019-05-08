@@ -7,7 +7,7 @@ import {DeviceBasic} from '../services/device-getter.service';
   styleUrls: ['./control-panel.component.css']
 })
 export class ControlPanelComponent implements OnInit {
-  private selectedDevice: DeviceBasic;
+  selectedDevice: DeviceBasic;
 
   constructor() { }
 
