@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class HttpService {
 
   private authSecretVar = '';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private balloon: BalloonMessageFactoryService) {
     this.authSecret = localStorage.getItem('authSecret') || '';
   }
 
@@ -40,12 +41,16 @@ export class HttpService {
 
       this.http.get<ApiResponse>(`${this.API_SERVER}/${url}`, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
+          console.log('needsLogin');
           // noinspection JSIgnoredPromiseFromCall
           this.router.navigate(['/login']);
           observer.next(null);
+        } else if (resp.status === 'error') {
+          this.balloon.show(resp.message, 'error');
+          observer.next(null);
+        } else {
+          observer.next(resp.message);
         }
-
-        observer.next(resp.message);
       });
     });
   }
@@ -67,9 +72,12 @@ export class HttpService {
           // noinspection JSIgnoredPromiseFromCall
           this.router.navigate(['/login']);
           observer.next(null);
+        } else if (resp.status === 'error') {
+          this.balloon.show(resp.message, 'error');
+          observer.next(null);
+        } else {
+          observer.next(resp.message);
         }
-
-        observer.next(resp.message);
       });
     });
   }
@@ -82,6 +90,10 @@ export class HttpService {
 
   checkPassword(password): Observable<boolean> {
     return this.post('/api/password/check', {password});
+  }
+
+  changePassword(newPassword): Observable<boolean> {
+    return this.post('/api/password/change', {password: newPassword});
   }
 }
 

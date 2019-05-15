@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../services/http.service';
 import {Router} from '@angular/router';
 import {PasswordCheckService} from './password-check/password-check.service';
+import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
 
 @Component({
   selector: 'app-user-config',
@@ -9,8 +10,11 @@ import {PasswordCheckService} from './password-check/password-check.service';
   styleUrls: ['./user-config.component.scss']
 })
 export class UserConfigComponent implements OnInit {
+  newPassword = '';
+  newPasswordRepeat = '';
 
-  constructor(public http: HttpService, private router: Router, private passwordCheck: PasswordCheckService) {
+  constructor(public http: HttpService, private router: Router, private passwordCheck: PasswordCheckService,
+              private balloon: BalloonMessageFactoryService) {
   }
 
   ngOnInit() {
@@ -26,9 +30,19 @@ export class UserConfigComponent implements OnInit {
   }
 
   changePassword() {
+    if (!this.newPassword.length || this.newPasswordRepeat !== this.newPassword) {
+      this.balloon.show('New password is incorrect', 'error');
+      return;
+    }
     this.passwordCheck.show().subscribe(status => {
-      console.log('password status');
-      console.log(status);
+      if (status) {
+        this.http.changePassword(this.newPassword).subscribe(status2 => {
+          if (status2) {
+            this.balloon.show('Password changed', 'success');
+            this.newPassword = this.newPasswordRepeat = '';
+          }
+        });
+      }
     });
   }
 }

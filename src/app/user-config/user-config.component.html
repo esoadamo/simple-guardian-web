@@ -4,8 +4,14 @@
     <div>Welcome to your config, {{http.username}}!</div>
     <div>You can:</div>
     <div (click)="changePassword()" class="button">Change password</div>
-    <input placeholder="new password" type="password">
-    <input placeholder="new password repeat" type="password">
+    <input (keyup.enter)="changePassword()" [(ngModel)]="newPassword"
+           [class.warning]="newPassword.length && newPasswordRepeat.length && newPassword != newPasswordRepeat"
+           placeholder="new password"
+           type="password">
+    <input (keyup.enter)="changePassword()" [(ngModel)]="newPasswordRepeat"
+           [class.warning]="newPassword.length && newPasswordRepeat.length && newPassword != newPasswordRepeat"
+           placeholder="new password repeat"
+           type="password">
     <div>OR</div>
     <div class="button">Delete your account</div>
   </div>
