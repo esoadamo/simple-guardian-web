@@ -45,4 +45,17 @@ export class UserConfigComponent implements OnInit {
       }
     });
   }
+
+  deleteUser() {
+    this.passwordCheck.show().subscribe(status => {
+      if (status) {
+        this.http.get('/api/user/delete').subscribe(status2 => {
+          if (status2) {
+            this.balloon.show('Bye', 'success');
+            this.http.logout();
+          }
+        });
+      }
+    });
+  }
 }

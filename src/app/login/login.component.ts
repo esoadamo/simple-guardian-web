@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.http.post('/api/login', {mail: this.email, password: this.password}).subscribe(resp => {
+    this.http.post('/api/user/login', {mail: this.email, password: this.password}).subscribe(resp => {
       switch (resp.login) {
         case 'ok':
           this.balloonMsg.show('Login successful', 'success');

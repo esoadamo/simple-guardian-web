@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       this.balloon.show('Passwords are not the same', 'error');
     }
 
-    this.http.post('/api/register', {mail: this.email, password: this.password}).subscribe(resp => {
+    this.http.post('/api/user/register', {mail: this.email, password: this.password}).subscribe(resp => {
       switch (resp.register) {
         case 'ok':
           this.balloon.show('Registered successfully', 'success');

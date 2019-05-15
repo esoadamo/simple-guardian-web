@@ -83,17 +83,17 @@ export class HttpService {
   }
 
   getUsername(): Observable<string> {
-    const r = this.get('/api/whoami', false);
+    const r = this.get('/api/user/whoami', false);
     r.subscribe(rr => this.username = rr.trim());
     return r;
   }
 
   checkPassword(password): Observable<boolean> {
-    return this.post('/api/password/check', {password});
+    return this.post('/api/user/password/check', {password});
   }
 
   changePassword(newPassword): Observable<boolean> {
-    return this.post('/api/password/change', {password: newPassword});
+    return this.post('/api/user/password/change', {password: newPassword});
   }
 }
 
