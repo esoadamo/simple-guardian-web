@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start.local": "ng serve --proxy-config proxy-local.conf.json",
+    "start.prod": "ng serve --proxy-config proxy-prod.conf.json"
   },
   "private": true,
   "dependencies": {

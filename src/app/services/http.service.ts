@@ -8,7 +8,6 @@ import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-f
   providedIn: 'root'
 })
 export class HttpService {
-  API_SERVER = 'http://localhost:5000/';
   username = '';
 
   private authSecretVar = '';
@@ -25,6 +24,7 @@ export class HttpService {
   logout() {
     this.authSecret = '';
     this.username = '';
+    // noinspection JSIgnoredPromiseFromCall
     this.router.navigate(['/']);
   }
 
@@ -39,7 +39,7 @@ export class HttpService {
 
     return new Observable((observer) => {
 
-      this.http.get<ApiResponse>(`${this.API_SERVER}/${url}`, {headers}).subscribe(resp => {
+      this.http.get<ApiResponse>(url, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
           console.log('needsLogin');
           // noinspection JSIgnoredPromiseFromCall
@@ -51,6 +51,9 @@ export class HttpService {
         } else {
           observer.next(resp.message);
         }
+      }, error => {
+        this.balloon.show('Error when communicating with the server', 'error');
+        console.log(error);
       });
     });
   }
@@ -66,7 +69,7 @@ export class HttpService {
 
     return new Observable((observer) => {
 
-      this.http.post<ApiResponse>(`${this.API_SERVER}/${url}`, data, {headers}).subscribe(resp => {
+      this.http.post<ApiResponse>(url, data, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
           console.log('needsLogin');
           // noinspection JSIgnoredPromiseFromCall
