@@ -1,0 +1,16 @@
+<app-top-menu></app-top-menu>
+<div class="theRest">
+  <input [formControl]="searchFilter" id="search" placeholder="search profiles">
+  <div class="profiles">
+    <div (click)="showProfile(profile.id)" *ngFor="let profile of profiles" class="profile">
+      <div class="title">{{profile.name}}</div>
+      <div class="info">
+        <span>❤️ {{profile.likes}}</span>
+        <span *ngIf="profile.official; else fanMade" class="official">official</span>
+        <ng-template #fanMade>
+          <span class="fan-made">fan made</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

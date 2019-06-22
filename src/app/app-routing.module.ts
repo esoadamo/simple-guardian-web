@@ -6,6 +6,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {UserConfigComponent} from './user-config/user-config.component';
+import {HubComponent} from './hub/hub.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'control/:id', component: ControlPanelComponent},
   {path: 'config', component: UserConfigComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'hub', component: HubComponent}
 ];
 
 @NgModule({

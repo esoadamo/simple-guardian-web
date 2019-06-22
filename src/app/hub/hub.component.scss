@@ -1,0 +1,42 @@
+.theRest {
+  flex-direction: column;
+  align-items: center;
+
+  #search {
+    text-align: center;
+    font-size: 25px;
+    margin: 20px 0;
+    width: 95%;
+  }
+
+  .profiles {
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 50px);
+  }
+
+  .profile {
+    background: #474747;
+    width: 300px;
+    border: 2px solid #02a28e;
+    font-size: 16px;
+    float: left;
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px 7px;
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+    }
+
+    .info {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}

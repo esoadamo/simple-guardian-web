@@ -19,6 +19,7 @@ import {RegisterComponent} from './register/register.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {UserConfigComponent} from './user-config/user-config.component';
 import {PasswordCheckComponent} from './user-config/password-check/password-check.component';
+import {HubComponent} from './hub/hub.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {PasswordCheckComponent} from './user-config/password-check/password-chec
     HomePageComponent,
     UserConfigComponent,
     PasswordCheckComponent,
+    HubComponent,
   ],
   imports: [
     BrowserModule,
