@@ -12,6 +12,9 @@ export class TopMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.http.userID === 0) {
+      this.http.getUsername().subscribe();
+    }
   }
 
 }

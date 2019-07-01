@@ -71,6 +71,7 @@ export interface Device extends DeviceBasic {
   attacks: Attack[];
   bans: Ban[];
   version: string;
+  profiles: number[];
 }
 
 export interface Attack {

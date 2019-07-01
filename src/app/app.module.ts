@@ -20,6 +20,9 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {UserConfigComponent} from './user-config/user-config.component';
 import {PasswordCheckComponent} from './user-config/password-check/password-check.component';
 import {HubComponent} from './hub/hub.component';
+import {HubProfileComponent} from './hub/hub-profile/hub-profile.component';
+import {ProfileComponent} from './profile/profile.component';
+import {HubProfileSendComponent} from './hub/hub-profile-send/hub-profile-send.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import {HubComponent} from './hub/hub.component';
     UserConfigComponent,
     PasswordCheckComponent,
     HubComponent,
+    HubProfileComponent,
+    ProfileComponent,
+    HubProfileSendComponent,
   ],
   imports: [
     BrowserModule,

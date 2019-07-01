@@ -1,0 +1,39 @@
+:host {
+  padding: 3px;
+
+  .title {
+    border: 2px solid #02a28e;
+    border-right: 0;
+    border-left: 0;
+    width: 100%;
+    padding: 2px;
+    display: flex;
+
+    input {
+      background: transparent;
+      border: none;
+      flex-grow: 1;
+      color: white;
+    }
+
+    .expander {
+      margin: 0 10px;
+      color: #0099ba;
+      cursor: pointer;
+    }
+  }
+
+  textarea, input {
+    width: 100%;
+    border: 0;
+    padding: 5px 0;
+    margin: 5px 0;
+    background: #565656;
+    color: white;
+    font-size: 15px;
+  }
+
+  .log-file {
+    text-align: center;
+  }
+}

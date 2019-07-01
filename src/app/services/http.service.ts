@@ -3,16 +3,19 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
   username = '';
+  userID = 0;
 
   private authSecretVar = '';
 
-  constructor(private http: HttpClient, private router: Router, private balloon: BalloonMessageFactoryService) {
+  constructor(private http: HttpClient, private router: Router,
+              private balloon: BalloonMessageFactoryService) {
     this.authSecret = localStorage.getItem('authSecret') || '';
   }
 
@@ -41,9 +44,14 @@ export class HttpService {
 
       this.http.get<ApiResponse>(url, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
-          console.log('needsLogin');
-          // noinspection JSIgnoredPromiseFromCall
-          this.router.navigate(['/login']);
+          console.log('user needs login');
+          if (!location.pathname.startsWith('/register')
+            && !location.pathname.startsWith('/hub')
+            && !location.pathname.startsWith('/home')
+            && location.pathname !== '/') {
+            // noinspection JSIgnoredPromiseFromCall
+            this.router.navigate(['/login']);
+          }
           observer.next(null);
         } else if (resp.status === 'error') {
           this.balloon.show(resp.message, 'error');
@@ -71,9 +79,14 @@ export class HttpService {
 
       this.http.post<ApiResponse>(url, data, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
-          console.log('needsLogin');
-          // noinspection JSIgnoredPromiseFromCall
-          this.router.navigate(['/login']);
+          console.log('user needs login');
+          if (!location.pathname.startsWith('/register')
+            && !location.pathname.startsWith('/hub')
+            && !location.pathname.startsWith('/home')
+            && location.pathname !== '/') {
+            // noinspection JSIgnoredPromiseFromCall
+            this.router.navigate(['/login']);
+          }
           observer.next(null);
         } else if (resp.status === 'error') {
           this.balloon.show(resp.message, 'error');
@@ -86,9 +99,15 @@ export class HttpService {
   }
 
   getUsername(): Observable<string> {
-    const r = this.get('/api/user/whoami', false);
-    r.subscribe(rr => this.username = rr.trim());
-    return r;
+    return this.get('/api/user/whoami', false).pipe(map(r => {
+      if (!r) {
+        return r;
+      }
+      this.username = r.username;
+      this.userID = r.id;
+
+      return r.username;
+    }));
   }
 
   checkPassword(password): Observable<boolean> {

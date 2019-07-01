@@ -44,3 +44,10 @@ code {
   padding: 0;
   overflow: auto;
 }
+
+.separator {
+  width: 100%;
+  height: 5px;
+  margin: 10px 0;
+  background: #02a28e;
+}

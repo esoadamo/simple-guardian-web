@@ -11,10 +11,16 @@
         Attacks
       </div>
       <div (click)="selectedInfoPanel = 'bans'" [class.active]="selectedInfoPanel==='bans'" class="button">Bans</div>
-      <div class="button">Device profiles</div>
+      <div (click)="selectedInfoPanel = 'profiles'" [class.active]="selectedInfoPanel==='profiles'" class="button">
+        Device profiles
+      </div>
       <div (click)="selectedInfoPanel = 'config'" [class.active]="selectedInfoPanel==='config'" class="button">
         Device config
       </div>
+    </div>
+    <div *ngIf="selectedInfoPanel === 'profiles'" class="info-content">
+      <app-profile *ngFor="let profileID of selectedDeviceVar.profiles" [allowSend]="false" [disabled]="true"
+                   [expandable]="true" [id]="profileID"></app-profile>
     </div>
     <div *ngIf="selectedInfoPanel === 'config'" class="info-content">
       <div>

@@ -1,0 +1,15 @@
+<app-top-menu></app-top-menu>
+<div class="theRest">
+  <div #form class="form">
+    <div class="title">Select devices to send <i>{{profileName$ | async}}</i> profile to</div>
+    <div class="separator"></div>
+    <label *ngFor="let device of devices$ | async" class="button">
+      <input class="value" type="checkbox" value="{{device.id}}">{{device.name}}
+    </label>
+    <div class="separator"></div>
+    <div (click)="send()" class="button">Send</div>
+    <div (click)="selectAll()" class="button">Select all</div>
+    <div (click)="selectNone()" class="button">Select None</div>
+    <div (click)="cancel()" class="button">Cancel</div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 <app-top-menu></app-top-menu>
 <div class="theRest">
-  <input [formControl]="searchFilter" id="search" placeholder="search profiles">
+  <div class="search">
+    <input [formControl]="searchFilter" placeholder="search profiles">
+    <div (click)="newProfile()" *ngIf="http.userID !== 0" class="button">New</div>
+  </div>
   <div class="profiles">
     <div (click)="showProfile(profile.id)" *ngFor="let profile of profiles" class="profile">
       <div class="title">{{profile.name}}</div>

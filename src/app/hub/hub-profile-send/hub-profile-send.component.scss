@@ -1,0 +1,18 @@
+.theRest {
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+
+  .form {
+    .title {
+      margin-bottom: 10px;
+    }
+
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #02a28e;
+    background: #575555;
+  }
+}

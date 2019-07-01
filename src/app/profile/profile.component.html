@@ -1,0 +1,26 @@
+<div *ngIf="profile" class="profile">
+  <div class="title">
+    <input [(ngModel)]="profile.name" [disabled]="!expanded || disabled" placeholder="profile name">
+    <span (click)="expanded = !expanded" *ngIf="expandable" class="expander">
+      {{ expanded ? '▲' : '▼' }}
+    </span>
+  </div>
+  <div *ngIf="expanded">
+    <textarea [(ngModel)]="profile.description" [disabled]="disabled" class="description"
+              placeholder="profile description"></textarea>
+    <input [(ngModel)]="profile.config.logFile" [disabled]="disabled" class="log-file"
+           placeholder="path to the log file">
+    <!--suppress JSUnusedGlobalSymbols -->
+    <input (change)="removeEmptyLines()"
+           *ngFor="let filter of profile.config.filters; let i = index;trackBy:trackByIndex;"
+           [disabled]="disabled"
+           [(ngModel)]="profile.config.filters[i]">
+    <input *ngIf="!disabled" [formControl]="newRule" placeholder="another rule">
+    <div class="buttons">
+      <div (click)="saveProfile()" *ngIf="!disabled" class="button">Save</div>
+      <div (click)="sendProfile()" *ngIf="http.userID !== 0 && allowSend" class="button">Send to device</div>
+      <div (click)="testLineAgainstProfile()" class="button">Test line against profile</div>
+      <div (click)="deleteProfile()" *ngIf="!disabled" class="button">Delete</div>
+    </div>
+  </div>
+</div>

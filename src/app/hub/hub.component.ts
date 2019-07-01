@@ -16,7 +16,7 @@ export class HubComponent implements OnInit {
 
   private _profiles: Profile[] = null;
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(protected http: HttpService, private router: Router) {
   }
 
   ngOnInit() {
@@ -48,4 +48,8 @@ export class HubComponent implements OnInit {
     this.router.navigate([`/hub/profile/${id}`]);
   }
 
+  newProfile() {
+    // noinspection JSIgnoredPromiseFromCall
+    this.router.navigate([`/hub/profile/-1`]);
+  }
 }
