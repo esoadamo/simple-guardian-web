@@ -21,8 +21,9 @@ export class DeviceInfoComponent implements OnInit {
       return;
     }
     this.deviceGetter.getDeviceInfo(device).subscribe(dev => {
-      console.log(dev);
       this.selectedDeviceVar = dev;
+      this.selectedDeviceVar.attacks.sort((a, b) => b.time - a.time);
+      this.selectedDeviceVar.bans.sort((a, b) => b.time - a.time);
     });
   }
 
