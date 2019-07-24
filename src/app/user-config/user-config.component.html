@@ -3,6 +3,13 @@
   <div class="form">
     <div>Welcome to your config, {{http.username}}!</div>
     <div>You can:</div>
+    <label>Use block list sharing:
+      <app-checkbox (change)="sendFederatedBlocklistStatus($event)"
+                    [checked]="federatedBlocklist">
+
+      </app-checkbox>
+    </label>
+    <div>OR</div>
     <div (click)="changePassword()" class="button">Change password</div>
     <input (keyup.enter)="changePassword()" [(ngModel)]="newPassword"
            [class.warning]="newPassword.length && newPasswordRepeat.length && newPassword != newPasswordRepeat"

@@ -1,0 +1,28 @@
+.content {
+  width: 20px;
+  height: 20px;
+  background: #2d2d2d;
+  border: 2px solid #02a28e;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2d2d2d;
+}
+
+.checked {
+  color: #fff;
+}
+
+:host {
+  display: inline-block;
+  user-select: none;
+}
+
+:host:hover {
+  filter: brightness(1.5);
+}

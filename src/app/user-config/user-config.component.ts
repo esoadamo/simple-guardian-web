@@ -13,20 +13,26 @@ export class UserConfigComponent implements OnInit {
   newPassword = '';
   newPasswordRepeat = '';
 
+  federatedBlocklist = false;
+
   constructor(public http: HttpService, private router: Router, private passwordCheck: PasswordCheckService,
               private balloon: BalloonMessageFactoryService) {
   }
 
   ngOnInit() {
-    // Check if user is logged in
-    if (this.http.username.length === 0) {
-      this.http.getUsername().subscribe(username => {
-        if (username.length === 0) {
-          // noinspection JSIgnoredPromiseFromCall
-          this.router.navigate(['/login']);
-        }
-      });
-    }
+    this.http.get('/api/user/isOn/federatedSharing').subscribe(r => {
+      if (r) {
+        this.federatedBlocklist = r.on;
+      }
+    });
+  }
+
+  sendFederatedBlocklistStatus(status) {
+    this.http.post('/api/user/isOn/federatedSharing', {on: status}).subscribe(r => {
+      if (r) {
+        this.balloon.show('Status changed', 'success');
+      }
+    });
   }
 
   changePassword() {

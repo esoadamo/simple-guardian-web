@@ -23,6 +23,7 @@ import {HubComponent} from './hub/hub.component';
 import {HubProfileComponent} from './hub/hub-profile/hub-profile.component';
 import {ProfileComponent} from './profile/profile.component';
 import {HubProfileSendComponent} from './hub/hub-profile-send/hub-profile-send.component';
+import {CheckboxComponent} from './checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {HubProfileSendComponent} from './hub/hub-profile-send/hub-profile-send.c
     HubProfileComponent,
     ProfileComponent,
     HubProfileSendComponent,
+    CheckboxComponent,
   ],
   imports: [
     BrowserModule,
