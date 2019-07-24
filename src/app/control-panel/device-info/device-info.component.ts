@@ -57,4 +57,7 @@ export class DeviceInfoComponent implements OnInit, OnDestroy {
     ${z(date.getHours())}:${z(date.getMinutes())}:${z(date.getSeconds())}`;
   }
 
+  unblock(ip: string) {
+    this.deviceGetter.deviceUnban(this.selectedDeviceVar, ip);
+  }
 }

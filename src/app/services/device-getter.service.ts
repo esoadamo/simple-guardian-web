@@ -59,6 +59,14 @@ export class DeviceGetterService {
     });
     return r;
   }
+
+  deviceUnban(device: DeviceBasic, ip: string): Observable<{ success: boolean, message: string }> {
+    const r = this.httpService.post('/api/device/unban', {id: device.id, ip});
+    r.subscribe(rr => {
+      this.balloon.show(rr.message, rr.success ? 'success' : 'error');
+    });
+    return r;
+  }
 }
 
 export interface DeviceBasic {

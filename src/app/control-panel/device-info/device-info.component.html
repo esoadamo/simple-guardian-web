@@ -42,6 +42,7 @@
           <th>Time</th>
           <th>IP</th>
           <th>Attacks count</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -50,7 +51,7 @@
           <td>{{ban.ip}}</td>
           <td>{{ban.attacksCount}}</td>
           <td>
-            <div class="button">Unblock</div>
+            <div (click)="unblock(ban.ip)" class="button">Unblock</div>
           </td>
         </tr>
         </tbody>
