@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpService} from '../services/http.service';
 import {Profile} from './profile.model';
 import {FormControl} from '@angular/forms';
@@ -6,6 +6,7 @@ import {debounceTime} from 'rxjs/operators';
 import {DialogService} from '../dialog/dialog.service';
 import {BalloonMessageFactoryService} from '../balloon-message/balloon-message-factory.service';
 import {Router} from '@angular/router';
+import {DeviceBasic} from '../services/device-getter.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +22,12 @@ export class ProfileComponent implements OnInit {
 
   @Input()
   disabled: boolean = null;
+
+  @Input()
+  device: DeviceBasic = null;
+
+  @Output()
+  profileRemove = new EventEmitter<DeviceBasic>();
 
   expanded = false;
   profile: Profile = null;
@@ -174,5 +181,16 @@ export class ProfileComponent implements OnInit {
   sendProfile() {
     // noinspection JSIgnoredPromiseFromCall
     this.router.navigate([`/hub/profile/${this._id}/send`]);
+  }
+
+  removeFromDevice() {
+    this.http.post(`/api/hub/profile/remove`, {id: this.profile.id, device: this.device.id}).subscribe(r => {
+      if (!r) {
+        return;
+      }
+      this.balloon.show(r, 'success');
+      this.profile = null;
+      this.profileRemove.emit(this.device);
+    });
   }
 }

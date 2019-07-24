@@ -19,8 +19,13 @@
       </div>
     </div>
     <div *ngIf="selectedInfoPanel === 'profiles'" class="info-content">
+      <div *ngIf="selectedDeviceVar.profiles.length === 0">
+        It seems that this device has not profiles yet! Jump to <!--suppress JSIgnoredPromiseFromCall -->
+        <a (click)="router.navigate(['/hub'])">Hub</a> and get some!
+      </div>
       <app-profile *ngFor="let profileID of selectedDeviceVar.profiles" [allowSend]="false" [disabled]="true"
-                   [expandable]="true" [id]="profileID"></app-profile>
+                   (profileRemove)="refresh()" [device]="selectedDeviceVar" [expandable]="true"
+                   [id]="profileID"></app-profile>
     </div>
     <div *ngIf="selectedInfoPanel === 'config'" class="info-content">
       <div>

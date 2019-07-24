@@ -17,6 +17,11 @@ code {
   text-align: left;
 }
 
+a {
+  color: #9aff00;
+  cursor: pointer;
+}
+
 .button {
   background: #2d2d2d;
   border: 2px solid #02a28e;

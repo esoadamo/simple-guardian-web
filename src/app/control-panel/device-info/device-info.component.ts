@@ -1,17 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Device, DeviceBasic, DeviceGetterService} from '../../services/device-getter.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-device-info',
   templateUrl: './device-info.component.html',
   styleUrls: ['./device-info.component.scss']
 })
-export class DeviceInfoComponent implements OnInit {
+export class DeviceInfoComponent implements OnInit, OnDestroy {
   selectedDeviceVar: Device;
   devicesInfo: { total: number, offline: number, needsLinking: number };
   selectedInfoPanel: string;
 
-  constructor(public deviceGetter: DeviceGetterService) {
+  constructor(public deviceGetter: DeviceGetterService, public router: Router) {
   }
 
   @Input()
@@ -36,6 +37,14 @@ export class DeviceInfoComponent implements OnInit {
       };
       console.log(this.devicesInfo);
     });
+  }
+
+  ngOnDestroy() {
+    this.deviceGetter.autorefresh = false;
+  }
+
+  refresh() {
+    this.deviceGetter.getDeviceInfo(this.selectedDeviceVar).subscribe(device => this.selectedDeviceVar = device);
   }
 
   formatDate(timestamp: number): string {
