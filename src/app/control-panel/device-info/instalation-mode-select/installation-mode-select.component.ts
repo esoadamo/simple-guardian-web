@@ -9,6 +9,7 @@ import {HttpService} from '../../../services/http.service';
 })
 export class InstallationModeSelectComponent implements OnInit {
   option: string;
+  apiServer = `${window.location.protocol}//${window.location.host}/`;
 
   @Input()
   selectedDevice: DeviceBasic;
