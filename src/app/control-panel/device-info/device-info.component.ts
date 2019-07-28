@@ -1,6 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Device, DeviceBasic, DeviceGetterService} from '../../services/device-getter.service';
 import {Router} from '@angular/router';
+import {DialogService} from '../../dialog/dialog.service';
 
 @Component({
   selector: 'app-device-info',
@@ -12,7 +13,7 @@ export class DeviceInfoComponent implements OnInit, OnDestroy {
   devicesInfo: { total: number, offline: number, needsLinking: number };
   selectedInfoPanel: string;
 
-  constructor(public deviceGetter: DeviceGetterService, public router: Router) {
+  constructor(public deviceGetter: DeviceGetterService, public router: Router, private dialog: DialogService) {
   }
 
   @Input()
@@ -44,6 +45,7 @@ export class DeviceInfoComponent implements OnInit, OnDestroy {
   }
 
   refresh() {
+    console.log('manually refreshing device info');
     this.deviceGetter.getDeviceInfo(this.selectedDeviceVar).subscribe(device => this.selectedDeviceVar = device);
   }
 
@@ -59,5 +61,14 @@ export class DeviceInfoComponent implements OnInit, OnDestroy {
 
   unblock(ip: string) {
     this.deviceGetter.deviceUnban(this.selectedDeviceVar, ip);
+  }
+
+  renameDevice() {
+    this.dialog.show('Enter new name od the device', this.selectedDeviceVar.name).subscribe(r => {
+      if (!r) {
+        return;
+      }
+      this.deviceGetter.deviceRename(this.selectedDeviceVar, r).subscribe(() => this.refresh());
+    });
   }
 }

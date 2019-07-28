@@ -7,6 +7,9 @@
                                [selectedDevice]="selectedDeviceVar"></app-instalation-mode-select>
   <ng-template #selectedDeviceInfo>
     <div class="buttons">
+      <div (click)="selectedInfoPanel = 'info'" [class.active]="selectedInfoPanel==='info'" class="button">
+        Info
+      </div>
       <div (click)="selectedInfoPanel = 'attacks'" [class.active]="selectedInfoPanel==='attacks'" class="button">
         Attacks
       </div>
@@ -33,6 +36,7 @@
         <div (click)="this.deviceGetter.deviceUpdate(selectedDeviceVar)" class="button">Update
           to {{selectedDeviceVar.version}}</div>
       </div>
+      <div (click)="renameDevice()" class="button">Rename</div>
       <div (click)="this.deviceGetter.deviceDelete(selectedDeviceVar)" class="button">Delete this device</div>
     </div>
     <div *ngIf="selectedInfoPanel === 'bans'" class="info-content">

@@ -67,6 +67,14 @@ export class DeviceGetterService {
     });
     return r;
   }
+
+  deviceRename(device: DeviceBasic, name: string): Observable<{ success: boolean, message: string }> {
+    const r = this.httpService.post('/api/device/rename', {id: device.id, name});
+    r.subscribe(rr => {
+      this.balloon.show(rr.message, rr.success ? 'success' : 'error');
+    });
+    return r;
+  }
 }
 
 export interface DeviceBasic {
