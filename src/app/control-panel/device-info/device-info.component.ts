@@ -60,7 +60,7 @@ export class DeviceInfoComponent implements OnInit, OnDestroy {
   }
 
   unblock(ip: string) {
-    this.deviceGetter.deviceUnban(this.selectedDeviceVar, ip);
+    this.deviceGetter.deviceUnban(this.selectedDeviceVar, ip).subscribe(() => this.refresh());
   }
 
   renameDevice() {
