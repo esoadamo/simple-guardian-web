@@ -30,6 +30,12 @@
                    (profileRemove)="refresh()" [device]="selectedDeviceVar" [expandable]="true"
                    [id]="profileID"></app-profile>
     </div>
+    <div *ngIf="selectedInfoPanel === 'info'" class="info-content">
+      Attacks in the last 24 hours: {{selectedDeviceVar.stats.attacks.today}}<br>
+      Attacks total: {{selectedDeviceVar.stats.attacks.total}}<br>
+      Bans in the last 24 hours: {{selectedDeviceVar.stats.bans.today}}<br>
+      Bans total: {{selectedDeviceVar.stats.bans.total}}<br>
+    </div>
     <div *ngIf="selectedInfoPanel === 'config'" class="info-content">
       <div>
         <div class="text">Installed version: {{selectedDeviceVar.version}}</div>

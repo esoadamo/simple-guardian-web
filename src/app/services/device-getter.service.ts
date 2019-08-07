@@ -88,6 +88,18 @@ export interface Device extends DeviceBasic {
   bans: Ban[];
   version: string;
   profiles: number[];
+  stats: DeviceStats;
+}
+
+export interface DeviceStats {
+  attacks: {
+    total: number,
+    today: number,
+  };
+  bans: {
+    total: number,
+    today: number,
+  };
 }
 
 export interface Attack {

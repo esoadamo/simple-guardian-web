@@ -38,6 +38,7 @@ export class DeviceInfoComponent implements OnInit, OnDestroy {
       };
       console.log(this.devicesInfo);
     });
+    this.selectedInfoPanel = 'info';
   }
 
   ngOnDestroy() {
