@@ -48,6 +48,7 @@ export class HttpService {
           if (!location.pathname.startsWith('/register')
             && !location.pathname.startsWith('/hub')
             && !location.pathname.startsWith('/home')
+            && !location.pathname.startsWith('/about')
             && location.pathname !== '/') {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigate(['/login']);
@@ -83,6 +84,7 @@ export class HttpService {
           if (!location.pathname.startsWith('/register')
             && !location.pathname.startsWith('/hub')
             && !location.pathname.startsWith('/home')
+            && !location.pathname.startsWith('/about')
             && location.pathname !== '/') {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigate(['/login']);

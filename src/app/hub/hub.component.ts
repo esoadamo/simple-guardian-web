@@ -16,7 +16,7 @@ export class HubComponent implements OnInit {
 
   private _profiles: Profile[] = null;
 
-  constructor(protected http: HttpService, private router: Router) {
+  constructor(public http: HttpService, private router: Router) {
   }
 
   ngOnInit() {
