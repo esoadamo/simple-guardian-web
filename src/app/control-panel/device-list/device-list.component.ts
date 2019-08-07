@@ -48,8 +48,10 @@ export class DeviceListComponent implements OnInit {
   }
 
   addNewDevice() {
-    console.log(this.dialogCreator);
     this.dialogCreator.show('Enter the name of your new device:').subscribe(deviceName => {
+      if (!deviceName) {
+        return;
+      }
       this.http.post('/api/device/create', {name: deviceName}).subscribe(resp => {
         this.balloonMessage.show(resp.message, resp.status === 'ok' ? 'success' : 'error');
         if (resp.status === 'ok') {

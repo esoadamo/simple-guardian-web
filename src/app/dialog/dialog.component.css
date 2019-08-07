@@ -16,6 +16,10 @@
   z-index: 101;
 }
 
+input {
+  width: 100%;
+}
+
 * {
   font-size: 25px;
 }
