@@ -24,6 +24,7 @@ import {HubProfileComponent} from './hub/hub-profile/hub-profile.component';
 import {ProfileComponent} from './profile/profile.component';
 import {HubProfileSendComponent} from './hub/hub-profile-send/hub-profile-send.component';
 import {CheckboxComponent} from './checkbox/checkbox.component';
+import {AboutPageComponent} from './about-page/about-page.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {CheckboxComponent} from './checkbox/checkbox.component';
     ProfileComponent,
     HubProfileSendComponent,
     CheckboxComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserModule,

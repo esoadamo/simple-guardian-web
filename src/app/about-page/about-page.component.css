@@ -1,0 +1,19 @@
+.theRest {
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 35px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+p, ul {
+  font-size: 25px;
+  max-width: 18cm;
+}
+
+ul {
+  margin-bottom: 15px;
+}
