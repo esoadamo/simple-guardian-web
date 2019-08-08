@@ -2,8 +2,10 @@
 <div class="header">
   Simple-Guardian login
 </div>
-<input (keyup.enter)="login()" [(ngModel)]="email" placeholder="mail" type="mail">
-<input (keyup.enter)="login()" [(ngModel)]="password" placeholder="password" type="password">
-<div (click)="login()" class="button">
-  Login
-</div>
+<form (ngSubmit)="login()" action="#">
+  <input [(ngModel)]="email" name="mail" placeholder="mail" type="mail">
+  <input [(ngModel)]="password" name="password" placeholder="password" type="password">
+  <div (click)="login()" class="button">
+    Login
+  </div>
+</form>

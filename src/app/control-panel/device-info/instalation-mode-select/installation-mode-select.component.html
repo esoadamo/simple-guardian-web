@@ -16,16 +16,13 @@
   <app-warning-div
     [text]="'WARNING: You should always check any script that you download from the internet!'"></app-warning-div>
   <div>Enter following command into your terminal and the script will do everything for you:</div>
-  <code>
-    wget -qO- "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}/auto"| sudo python3 -
-  </code>
+  <code>wget -qO- "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}/auto" | sudo python3
+    -</code>
 </div>
 <div *ngIf="option && option === 'login'" class="option-content">
   <div>You can link your device with this account by using simple-guardian-client:</div>
-  <code>
-    sudo simple-guardian-client login {{this.apiServer}}api/device/new/{{this.http.username}}
-    /{{selectedDevice.id}}
-  </code>
+  <code>sudo simple-guardian-client login "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}
+    "</code>
 </div>
 <div *ngIf="option && option === 'deb'" class="option-content">
   <div>By adding deb repository you can take advantage of using automatic updates.</div>
@@ -42,8 +39,7 @@
     # install<br>
     sudo apt install simple-guardian<br>
     # login with the server<br>
-    simple-guardian-client login "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}
-    "<br>
+    simple-guardian-client login "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}"<br>
   </code>
 </div>
 <div class="option-content">OR</div>
