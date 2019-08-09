@@ -20,7 +20,8 @@
 </div>
 <div *ngIf="option && option === 'login'" class="option-content">
   <div>You can link your device with this account by using simple-guardian-client:</div>
-  <code>sudo simple-guardian-client login "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}"</code>
+  <code>sudo simple-guardian-client login "{{this.apiServer}}api/device/new/{{this.http.username}}/{{selectedDevice.id}}"<br>
+    sudo service simple-guardian restart</code>
 </div>
 <div *ngIf="option && option === 'deb'" class="option-content">
   <div>By adding deb repository you can take advantage of using automatic updates.</div>
