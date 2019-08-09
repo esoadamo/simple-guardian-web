@@ -3,19 +3,17 @@
   Simple-Guardian register
 </div>
 <form (ngSubmit)="register()" action="#">
-  <input (keyup.enter)="register()" [(ngModel)]="email" placeholder="mail" type="mail" name="mail">
-  <input (keyup.enter)="register()" [(ngModel)]="password"
+  <input [(ngModel)]="email" placeholder="mail" type="mail" name="mail">
+  <input [(ngModel)]="password"
          [class.warning]="password.length && passwordRepeat.length && password !== passwordRepeat"
          placeholder="password"
          type="password"
          name="password"
   >
-  <input (keyup.enter)="register()" [(ngModel)]="passwordRepeat"
+  <input [(ngModel)]="passwordRepeat"
          [class.warning]="password.length && passwordRepeat.length && password !== passwordRepeat"
          placeholder="password repeat" type="password"
          name="passwordRepeat"
   >
-  <div (click)="register()" class="button">
-    Register
-  </div>
+  <input type="submit" class="button" value="Register">
 </form>
