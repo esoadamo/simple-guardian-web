@@ -27,10 +27,12 @@ export class RegisterComponent implements OnInit {
     this.http.post('/api/user/register', {mail: this.email, password: this.password}).subscribe(resp => {
       switch (resp.register) {
         case 'ok':
-          this.balloon.show('Registered successfully', 'success');
-          this.http.authSecret = resp.key;
-          // noinspection JSIgnoredPromiseFromCall
-          this.router.navigate(['/control']);
+          this.router.navigate(['/control']).then(() => {
+            this.balloon.show('Registered successfully', 'success');
+            this.password = this.passwordRepeat = '';
+            this.http.authSecret = resp.key;
+            this.http.getUsername().subscribe();
+          });
           break;
         case 'error':
           this.balloon.show(resp.message, 'error');

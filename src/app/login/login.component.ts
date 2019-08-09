@@ -23,11 +23,12 @@ export class LoginComponent implements OnInit {
     this.http.post('/api/user/login', {mail: this.email, password: this.password}).subscribe(resp => {
       switch (resp.login) {
         case 'ok':
-          this.balloonMsg.show('Login successful', 'success');
-          this.http.authSecret = resp.key;
-          this.password = '';
-          // noinspection JSIgnoredPromiseFromCall
-          this.router.navigate(['/control']);
+          this.router.navigate(['/control']).then(() => {
+            this.balloonMsg.show('Login successful', 'success');
+            this.http.authSecret = resp.key;
+            this.password = '';
+            this.http.getUsername().subscribe();
+          });
           break;
         case 'failed':
           this.balloonMsg.show('Wrong username or password', 'error');
