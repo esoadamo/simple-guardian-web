@@ -3,6 +3,7 @@
   <div *ngIf="http.username.length > 0" class="top-button" routerLink="/control" routerLinkActive="active">Control</div>
   <div class="top-button" routerLink="/hub" routerLinkActive="active">Hub</div>
   <div class="top-button" routerLink="/about" routerLinkActive="active">About</div>
+  <div *ngIf="router.url.startsWith('/tutorials')" class="top-button" routerLink="/tutorials" routerLinkActive="active">Tutorials</div>
 </div>
 <div *ngIf="http.username.length > 0">
   <div class="top-button" routerLink="/config" routerLinkActive="active">⚙ {{http.username}} ⚙</div>

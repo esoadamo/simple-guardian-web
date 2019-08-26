@@ -10,6 +10,7 @@ import {HubComponent} from './hub/hub.component';
 import {HubProfileComponent} from './hub/hub-profile/hub-profile.component';
 import {HubProfileSendComponent} from './hub/hub-profile-send/hub-profile-send.component';
 import {AboutPageComponent} from './about-page/about-page.component';
+import {TutorialsPageComponent} from './about-page/tutorials-page/tutorials-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'about', component: AboutPageComponent},
+  {path: 'tutorials', component: TutorialsPageComponent},
+  {path: 'tutorials/:id', component: TutorialsPageComponent},
   {path: 'hub', component: HubComponent},
   {path: 'hub/profile/:id', component: HubProfileComponent},
   {path: 'hub/profile/:id/send', component: HubProfileSendComponent}

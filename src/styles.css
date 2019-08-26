@@ -57,3 +57,11 @@ a {
   margin: 10px 0;
   background: #02a28e;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  filter: brightness(1.1);
+}

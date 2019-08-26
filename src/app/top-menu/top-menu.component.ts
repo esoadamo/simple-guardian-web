@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../services/http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-top-menu',
@@ -8,7 +9,7 @@ import {HttpService} from '../services/http.service';
 })
 export class TopMenuComponent implements OnInit {
 
-  constructor(public http: HttpService) {
+  constructor(public http: HttpService, public router: Router) {
   }
 
   ngOnInit() {

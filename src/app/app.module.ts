@@ -25,6 +25,9 @@ import {ProfileComponent} from './profile/profile.component';
 import {HubProfileSendComponent} from './hub/hub-profile-send/hub-profile-send.component';
 import {CheckboxComponent} from './checkbox/checkbox.component';
 import {AboutPageComponent} from './about-page/about-page.component';
+import {ArticleComponent} from './article/article.component';
+import {MarkdownModule} from 'ngx-markdown';
+import {TutorialsPageComponent} from './about-page/tutorials-page/tutorials-page.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import {AboutPageComponent} from './about-page/about-page.component';
     HubProfileSendComponent,
     CheckboxComponent,
     AboutPageComponent,
+    ArticleComponent,
+    TutorialsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,7 @@ import {AboutPageComponent} from './about-page/about-page.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    MarkdownModule.forRoot(),
   ],
   entryComponents: [
     BalloonMessageComponent,

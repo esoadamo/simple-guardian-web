@@ -14,9 +14,21 @@ export class HttpService {
 
   private authSecretVar = '';
 
+  // this paths can be accessed without login
+  private pathNoLogin = ['register', 'about', 'login', 'hub', 'home', 'tutorials', 'news'];
+
   constructor(private http: HttpClient, private router: Router,
               private balloon: BalloonMessageFactoryService) {
     this.authSecret = localStorage.getItem('authSecret') || '';
+  }
+
+  private pathRequiresLogin(): boolean {
+    for (const path of this.pathNoLogin) {
+      if (new RegExp(`\\/${path}.*`).test(this.router.url)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   set authSecret(val: string) {
@@ -45,11 +57,7 @@ export class HttpService {
       this.http.get<ApiResponse>(url, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
           console.log('user needs login');
-          if (!location.pathname.startsWith('/register')
-            && !location.pathname.startsWith('/hub')
-            && !location.pathname.startsWith('/home')
-            && !location.pathname.startsWith('/about')
-            && location.pathname !== '/') {
+          if (this.pathRequiresLogin()) {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigate(['/login']);
           }
@@ -81,11 +89,7 @@ export class HttpService {
       this.http.post<ApiResponse>(url, data, {headers}).subscribe(resp => {
         if (resp.status === 'needsLogin') {
           console.log('user needs login');
-          if (!location.pathname.startsWith('/register')
-            && !location.pathname.startsWith('/hub')
-            && !location.pathname.startsWith('/home')
-            && !location.pathname.startsWith('/about')
-            && location.pathname !== '/') {
+          if (this.pathRequiresLogin()) {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigate(['/login']);
           }

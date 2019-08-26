@@ -21,14 +21,6 @@ $fontSize:25px;
   }
 }
 
-.clickable {
-  cursor: pointer;
-}
-
-.clickable:hover {
-  filter: brightness(1.1);
-}
-
 .device.selected {
   background: #02a28e;
 }

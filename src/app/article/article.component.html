@@ -1,0 +1,5 @@
+<h2 *ngIf="articleData" class="title">{{articleData.title | uppercase}}</h2>
+<div class="videoContainer">
+  <iframe *ngIf="articleData && articleData.video" [src]="sanitizer.bypassSecurityTrustResourceUrl(articleData.video)" width="640" height="360" allow="fullscreen" allowfullscreen></iframe>
+</div>
+<markdown *ngIf="articleData && articleData.text" [data]="text" class="content"></markdown>

@@ -1,0 +1,20 @@
+.leftMenu {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #2d2d2d;
+  padding-right: 10px;
+  border-right: 2px solid #3f3f3f;
+}
+
+.article {
+  border: 1px solid #000000;
+  font-size: 25px;
+  background: #474747;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.article.active {
+  background: #02a28e;
+}
