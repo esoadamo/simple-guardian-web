@@ -1,11 +1,12 @@
 $fontSize:25px;
 
-:host {
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: #2d2d2d;
-  padding-right: 10px;
-  border-right: 2px solid #3f3f3f;
+@media (max-width: 1099px) {
+  :host {
+    position: fixed;
+    width: 0;
+    height: 0;
+    left: -1000px;
+  }
 }
 
 .device {

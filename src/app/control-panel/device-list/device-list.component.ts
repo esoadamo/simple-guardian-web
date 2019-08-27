@@ -1,20 +1,54 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {DeviceBasic, DeviceGetterService} from '../../services/device-getter.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DialogService} from '../../dialog/dialog.service';
 import {BalloonMessageFactoryService} from '../../balloon-message/balloon-message-factory.service';
 import {HttpService} from '../../services/http.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.component.html',
-  styleUrls: ['./device-list.component.scss']
+  styleUrls: ['./device-list.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        left: '0',
+      })),
+      state('closed', style({
+        left: '-290px',
+      })),
+      transition('open => closed', [
+        animate('0.3s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+    trigger('openCloseArrow', [
+      state('open', style({
+        left: '280px',
+      })),
+      state('closed', style({
+        left: '-20px',
+      })),
+      transition('open => closed', [
+        animate('0.3s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 export class DeviceListComponent implements OnInit {
   devicesOnline: DeviceBasic[];
   devicesOffline: DeviceBasic[];
   devicesNotLinked: DeviceBasic[];
   selectedDeviceVar: DeviceBasic;
+
+  modeMobile = false;
+  isOpen = true;
 
   set selectedDevice(device: DeviceBasic) {
     this.selectedDeviceVar = device;
@@ -23,6 +57,11 @@ export class DeviceListComponent implements OnInit {
 
   @Output()
   deviceSelected: EventEmitter<DeviceBasic> = new EventEmitter();
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkMobileMode();
+  }
 
   constructor(public deviceGetter: DeviceGetterService, public route: ActivatedRoute, public dialogCreator: DialogService,
               public balloonMessage: BalloonMessageFactoryService, public http: HttpService, public router: Router) {
@@ -45,6 +84,16 @@ export class DeviceListComponent implements OnInit {
     });
     this.deviceGetter.getDevices();
     this.deviceGetter.autorefresh = true;
+    this.checkMobileMode();
+  }
+
+  private checkMobileMode() {
+    const previousMode = this.modeMobile;
+    this.modeMobile = window.document.body.getBoundingClientRect().width < 1100;
+    if (previousMode === this.modeMobile) {
+      return;
+    }
+    this.isOpen = !this.modeMobile;
   }
 
   addNewDevice() {

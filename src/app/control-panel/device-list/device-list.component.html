@@ -1,56 +1,60 @@
-<div class="device">
-  <div class="device-status"></div>
-  <div class="device-name">Your devices</div>
-  <div class="device-status"></div>
-</div>
+<div *ngIf="modeMobile" [@openCloseArrow]="isOpen ? 'open' : 'closed'" class="leftMenuOpener" (click)="isOpen = !isOpen">{{isOpen ? '◀' : '▶'}}</div>
 
-<div (click)="addNewDevice()" class="device clickable">
-  <div class="device-status">+</div>
-  <div class="device-name">Add new device</div>
-  <div class="device-status">+</div>
-</div>
+<div class="leftMenu" [@openClose]="isOpen ? 'open' : 'closed'">
+  <div class="device leftMenuItem">
+    <div class="device-status"></div>
+    <div class="device-name">Your devices</div>
+    <div class="device-status"></div>
+  </div>
 
-<div class="sep"></div>
+  <div (click)="addNewDevice()" class="device leftMenuItem clickable">
+    <div class="device-status">+</div>
+    <div class="device-name">Add new device</div>
+    <div class="device-status">+</div>
+  </div>
 
-<div *ngIf="devicesOnline && devicesOnline.length > 0" class="device">
-  <div class="device-status"></div>
-  <div class="device-name">Online devices</div>
-  <div class="device-status"></div>
-</div>
-<div (click)="selectedDevice = device" *ngFor="let device of devicesOnline"
-     [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
-     class="device clickable" routerLink="/control/{{device.id}}">
-  <div class="device-status {{ device.status }}"></div>
-  <div class="device-name">{{ device.name }}</div>
-  <div class="device-status {{ device.status }}"></div>
-</div>
+  <div class="sep"></div>
 
-<div class="sep"></div>
+  <div *ngIf="devicesOnline && devicesOnline.length > 0" class="device leftMenuItem">
+    <div class="device-status"></div>
+    <div class="device-name">Online devices</div>
+    <div class="device-status"></div>
+  </div>
+  <div (click)="selectedDevice = device" *ngFor="let device of devicesOnline"
+       [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
+       class="device leftMenuItem clickable" routerLink="/control/{{device.id}}">
+    <div class="device-status {{ device.status }}"></div>
+    <div class="device-name">{{ device.name }}</div>
+    <div class="device-status {{ device.status }}"></div>
+  </div>
 
-<div *ngIf="devicesOffline && devicesOffline.length > 0" class="device">
-  <div class="device-status"></div>
-  <div class="device-name">Offline devices</div>
-  <div class="device-status"></div>
-</div>
-<div (click)="selectedDevice = device" *ngFor="let device of devicesOffline"
-     [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
-     class="device clickable" routerLink="/control/{{device.id}}">
-  <div class="device-status {{ device.status }}"></div>
-  <div class="device-name">{{ device.name }}</div>
-  <div class="device-status {{ device.status }}"></div>
-</div>
+  <div class="sep"></div>
 
-<div class="sep"></div>
+  <div *ngIf="devicesOffline && devicesOffline.length > 0" class="device leftMenuItem">
+    <div class="device-status"></div>
+    <div class="device-name">Offline devices</div>
+    <div class="device-status"></div>
+  </div>
+  <div (click)="selectedDevice = device" *ngFor="let device of devicesOffline"
+       [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
+       class="device leftMenuItem clickable" routerLink="/control/{{device.id}}">
+    <div class="device-status {{ device.status }}"></div>
+    <div class="device-name">{{ device.name }}</div>
+    <div class="device-status {{ device.status }}"></div>
+  </div>
 
-<div *ngIf="devicesNotLinked && devicesNotLinked.length > 0" class="device">
-  <div class="device-status"></div>
-  <div class="device-name">Not linked devices</div>
-  <div class="device-status"></div>
-</div>
-<div (click)="selectedDevice = device" *ngFor="let device of devicesNotLinked"
-     [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
-     class="device clickable" routerLink="/control/{{device.id}}">
-  <div class="device-status {{ device.status }}"></div>
-  <div class="device-name">{{ device.name }}</div>
-  <div class="device-status {{ device.status }}"></div>
+  <div class="sep"></div>
+
+  <div *ngIf="devicesNotLinked && devicesNotLinked.length > 0" class="device leftMenuItem">
+    <div class="device-status"></div>
+    <div class="device-name">Not linked devices</div>
+    <div class="device-status"></div>
+  </div>
+  <div (click)="selectedDevice = device" *ngFor="let device of devicesNotLinked"
+       [class.selected]="selectedDeviceVar && device.id===selectedDeviceVar.id"
+       class="device leftMenuItem clickable" routerLink="/control/{{device.id}}">
+    <div class="device-status {{ device.status }}"></div>
+    <div class="device-name">{{ device.name }}</div>
+    <div class="device-status {{ device.status }}"></div>
+  </div>
 </div>

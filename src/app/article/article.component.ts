@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css']
+  styleUrls: ['./article.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class ArticleComponent implements OnInit {
     if (this._articleData.text) {
       this.http.get(this._articleData.text, {responseType: 'text'}).subscribe(text => {
         this.text = text;
-        console.log(this.text);
+        this.cd.markForCheck();
       });
     }
   }
@@ -30,7 +31,7 @@ export class ArticleComponent implements OnInit {
 
   text = '*Loading...*';
 
-  constructor(private http: HttpClient, public sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, public sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
   }

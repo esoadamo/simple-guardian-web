@@ -1,15 +1,19 @@
-<div class="buttons">
-  <div class="top-button" routerLink="/home" routerLinkActive="active">Main page</div>
-  <div *ngIf="http.username.length > 0" class="top-button" routerLink="/control" routerLinkActive="active">Control</div>
-  <div class="top-button" routerLink="/hub" routerLinkActive="active">Hub</div>
-  <div class="top-button" routerLink="/about" routerLinkActive="active">About</div>
-  <div *ngIf="router.url.startsWith('/tutorials')" class="top-button" routerLink="/tutorials" routerLinkActive="active">Tutorials</div>
-</div>
-<div *ngIf="http.username.length > 0">
-  <div class="top-button" routerLink="/config" routerLinkActive="active">⚙ {{http.username}} ⚙</div>
-  <div (click)="http.logout()" class="top-button">Log out</div>
-</div>
-<div *ngIf="http.username.length === 0">
-  <div class="top-button" routerLink="/login" routerLinkActive="active">Log in</div>
-  <div class="top-button" routerLink="/register" routerLinkActive="active">Register</div>
+<div *ngIf="modeMobile" class="button-open-menu clickable" (click)="openMenu()" [@openClose]="isOpen ? 'closed' : 'open'">⫴</div>
+<div class="top-menu" [@openClose]="isOpen ? 'open' : 'closed'">
+  <div class="buttons">
+    <div class="top-button" *ngIf="modeMobile" (click)="closeMenu()">Close</div>
+    <div class="top-button" routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Main page</div>
+    <div *ngIf="http.username.length > 0" class="top-button" routerLink="/control" routerLinkActive="active" (click)="closeMenu()">Control</div>
+    <div class="top-button" routerLink="/hub" routerLinkActive="active" (click)="closeMenu()">Hub</div>
+    <div class="top-button" routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</div>
+    <div *ngIf="router.url.startsWith('/tutorials')" class="top-button" routerLink="/tutorials" routerLinkActive="active" (click)="closeMenu()">Tutorials</div>
+  </div>
+  <div *ngIf="http.username.length > 0" class="buttons">
+    <div class="top-button" routerLink="/config" routerLinkActive="active" (click)="closeMenu()">⚙ {{http.username}} ⚙</div>
+    <div (click)="http.logout(); closeMenu()" class="top-button">Log out</div>
+  </div>
+  <div *ngIf="http.username.length === 0" class="buttons">
+    <div class="top-button" routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Log in</div>
+    <div class="top-button" routerLink="/register" routerLinkActive="active" (click)="closeMenu()">Register</div>
+  </div>
 </div>

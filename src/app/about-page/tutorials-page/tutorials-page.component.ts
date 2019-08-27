@@ -1,12 +1,44 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ArticleData} from '../../article/article.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-tutorials-page',
   templateUrl: './tutorials-page.component.html',
-  styleUrls: ['./tutorials-page.component.css']
+  styleUrls: ['./tutorials-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        left: '0',
+      })),
+      state('closed', style({
+        left: '-290px',
+      })),
+      transition('open => closed', [
+        animate('0.3s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+    trigger('openCloseArrow', [
+      state('open', style({
+        left: '280px',
+      })),
+      state('closed', style({
+        left: '-20px',
+      })),
+      transition('open => closed', [
+        animate('0.3s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 export class TutorialsPageComponent implements OnInit {
   articles: ArticleData[] = [];
@@ -28,7 +60,19 @@ export class TutorialsPageComponent implements OnInit {
     return this._selectedArticleId;
   }
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  modeMobile = false;
+  isOpen = true;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkMobileMode();
+  }
+
+
+  constructor(private http: HttpClient,
+              private router: Router,
+              private route: ActivatedRoute,
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     const selectedID = this.route.snapshot.paramMap.get('id');
@@ -42,10 +86,22 @@ export class TutorialsPageComponent implements OnInit {
       });
       this.articles = articles;
       this.selectedArticleId = this.selectedArticleId;
+      this.cd.markForCheck();
     });
+    this.checkMobileMode();
+  }
+
+  private checkMobileMode() {
+    const previousMode = this.modeMobile;
+    this.modeMobile = window.document.body.getBoundingClientRect().width < 1100;
+    if (previousMode === this.modeMobile) {
+      return;
+    }
+    this.isOpen = !this.modeMobile;
   }
 
   openArticle(index: number) {
     this.router.navigate([`/tutorials/${index}`]).then(() =>  this.selectedArticleId = index);
+    this.cd.markForCheck();
   }
 }

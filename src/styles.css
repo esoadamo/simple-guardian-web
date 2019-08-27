@@ -65,3 +65,36 @@ a {
 .clickable:hover {
   filter: brightness(1.1);
 }
+
+.leftMenu {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #2d2d2d;
+  padding-right: 10px;
+  border-right: 2px solid #3f3f3f;
+  width: 300px;
+  z-index: 999;
+  height: 100vh;
+}
+
+@media (max-width: 1099px) {
+  .leftMenu {
+    position: fixed;
+  }
+}
+
+
+.leftMenuItem {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+.leftMenuOpener {
+  position: fixed;
+  top: 50%;
+  transform: translate(50%,-50%);
+  font-size: 50px;
+  opacity: .7;
+  left: -20px;
+  z-index: 1000;
+}

@@ -23,6 +23,9 @@ export class HttpService {
   }
 
   private pathRequiresLogin(): boolean {
+    if (this.router.url === '/') {
+      return false;
+    }
     for (const path of this.pathNoLogin) {
       if (new RegExp(`\\/${path}.*`).test(this.router.url)) {
         return false;

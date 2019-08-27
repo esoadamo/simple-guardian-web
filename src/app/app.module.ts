@@ -28,6 +28,7 @@ import {AboutPageComponent} from './about-page/about-page.component';
 import {ArticleComponent} from './article/article.component';
 import {MarkdownModule} from 'ngx-markdown';
 import {TutorialsPageComponent} from './about-page/tutorials-page/tutorials-page.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import {TutorialsPageComponent} from './about-page/tutorials-page/tutorials-page
     ReactiveFormsModule,
     FormsModule,
     MarkdownModule.forRoot(),
+    BrowserAnimationsModule
   ],
   entryComponents: [
     BalloonMessageComponent,

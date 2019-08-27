@@ -1,7 +1,8 @@
 <app-top-menu></app-top-menu>
 <div class="theRest">
-  <div class="leftMenu">
-    <div class="article clickable" *ngFor="let article of articles; let i = index" (click)="openArticle(i)" [class.active]="selectedArticleId === i">{{article.title}}</div>
+  <div *ngIf="modeMobile" [@openCloseArrow]="isOpen ? 'open' : 'closed'" class="leftMenuOpener" (click)="isOpen = !isOpen">{{isOpen ? '◀' : '▶'}}</div>
+  <div class="leftMenu" [@openClose]="isOpen ? 'open' : 'closed'">
+    <div class="article clickable leftMenuItem" *ngFor="let article of articles; let i = index" (click)="openArticle(i)" [class.active]="selectedArticleId === i">{{article.title}}</div>
   </div>
   <app-article *ngIf="selectedArticle" [articleData]="selectedArticle"></app-article>
 </div>

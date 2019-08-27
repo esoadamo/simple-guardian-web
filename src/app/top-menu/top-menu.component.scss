@@ -1,39 +1,78 @@
-:host {
-  height: 25px;
-  background: #2d2d2d;
-  font-size: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 2ex;
-  padding-right: 2ex;
-  width: calc(100% - 4ex);
-  border-bottom: 2px solid #3f3f3f;
+@media (min-width: 1100px) {
+  .top-menu {
+    height: 25px;
+    background: #2d2d2d;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2ex;
+    padding-right: 2ex;
+    width: calc(100% - 4ex);
+    border-bottom: 2px solid #3f3f3f;
+  }
+
+  div {
+    * {
+      display: inline;
+      margin-left: 3ex;
+    }
+  }
+
+  .top-button {
+    height: 25px;
+  }
+
+  .button-open-menu {
+    left: -1000px;
+  }
 }
 
-* {
-  margin-left: 1.5ex;
+@media (max-width: 1099px) {
+  .top-menu {
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #2d2d2d;
+    z-index: 9999;
+    max-width: 320px !important;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top-button {
+    font-size: 25px;
+  }
 }
 
+.button-open-menu {
+  position: fixed;
+  font-size: 50px;
+  transform: rotate(90deg);
+  margin-right: 20px;
+  font-weight: bold;
+}
 
 .top-button {
+  display: inline-block !important;
   background: #2d2d2d;
   border: 2px solid #3f3f3f;
   border-top: 0;
   padding: 2px 1ex;
   margin: 0;
   cursor: pointer;
+  max-width: 320px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 .top-button:hover {
   filter: brightness(1.1);
-}
-
-div {
-  * {
-    display: inline;
-    margin-left: 3ex;
-  }
 }
 
 .active {
