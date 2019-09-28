@@ -29,6 +29,8 @@ export class ProfileComponent implements OnInit {
   @Output()
   profileRemove = new EventEmitter<DeviceBasic>();
 
+  exists: boolean = null;
+
   expanded = false;
   profile: Profile = null;
   newRule = new FormControl();
@@ -45,6 +47,7 @@ export class ProfileComponent implements OnInit {
   @Input()
   set id(val: number) {
     this._id = val;
+    this.exists = val !== -1;
     this.loadProfileData();
   }
 
